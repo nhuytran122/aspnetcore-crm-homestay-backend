@@ -2,6 +2,7 @@ using CRM_Homestay.Core.Consts;
 using CRM_Homestay.Core.Consts.Permissions;
 using CRM_Homestay.Core.Enums;
 using CRM_Homestay.Core.Models;
+using CRM_Homestay.Database.Configurations;
 using CRM_Homestay.Entity.Amenities;
 using CRM_Homestay.Entity.AuditLogs;
 using CRM_Homestay.Entity.Bases;
@@ -130,6 +131,7 @@ public class HomestayContext : IdentityDbContext<User, Role, Guid, UserClaim, Us
         // builder.ApplyConfiguration(new CategoryAttributeConfiguration());
         // builder.ApplyConfiguration(new AttributeValueConfiguration());
 
+        builder.ApplyConfiguration(new BookingServiceConfiguration());
         SetRelationShip(builder);
         SeedData(builder);
         SetConstraint(builder);

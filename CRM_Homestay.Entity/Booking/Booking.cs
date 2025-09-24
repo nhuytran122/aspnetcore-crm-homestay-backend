@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using CRM_Homestay.Core.Enums;
 using CRM_Homestay.Core.Models;
 using CRM_Homestay.Entity.Bases;
+using CRM_Homestay.Entity.BookingPayments;
 using CRM_Homestay.Entity.BookingRooms;
 using CRM_Homestay.Entity.Customers;
 using CRM_Homestay.Entity.Reviews;
@@ -30,5 +31,7 @@ namespace CRM_Homestay.Entity.Bookings
         public List<Booking>? SubBookings { get; set; }
         public Customer? Customer { get; set; }
         public Review? Review { get; set; }
+
+        public List<BookingPayment>? BookingPayments { get; set; }
     }
 }

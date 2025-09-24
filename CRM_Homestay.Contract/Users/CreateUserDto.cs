@@ -27,15 +27,3 @@ public class CreateUserDto
     public Guid RoleId { get; set; }
     public long BaseSalary { get; set; } = 0;
 }
-
-public class CreateUserKtvDto : IForceOverrideValidationMessage
-{
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    public string? Email { get; set; }
-    public Gender Gender { get; set; } = Gender.Male;
-    public string? UserName { get; set; }
-    public string? Password { get; set; }
-    public string? PasswordConfirm { get; set; }
-    public string? PhoneNumber { get; set; }
-}

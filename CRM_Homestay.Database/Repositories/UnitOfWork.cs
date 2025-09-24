@@ -82,7 +82,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         return _context.ChangeTracker.HasChanges();
     }
 
-
     public void Dispose()
     {
         _context.Dispose();
@@ -151,7 +150,7 @@ public class CommonQueries
 
         if (text != null) normalize = $" {NormalizeString.ConvertNormalizeString(text)} ";
 
-        var query = _context.Users.Where(x => !x.IsDelete)
+        var query = _context.Users.Where(x => !x.DeletedAt.HasValue)
             .WhereIf(text != null, x => (" " + x.NormalizeFullInfo + " ").Contains(normalize) || (" " + x.PhoneNumber + " ").Contains(normalize) ||
             (" " + x.NormalizeAddress + " ").Contains(normalize) || (" " + x.NormalizedUserName + " ").Contains(normalize))
             .WhereIf(startDate != null && endDate == null, x => x.CreationTime.AddHours(7).Date >= startDate!.Value.Date)

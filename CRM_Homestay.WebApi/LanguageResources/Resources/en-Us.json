@@ -24,11 +24,12 @@
   "User:0003": "Incorrect login information please check again",
   "User:0004": "Account is deactivate",
   "User:0005": "Account does not exist",
-  "User:0006": "one user is only one role",
+  "User:0006": "One user is only one role",
   "User:0008": "Do not delete the management account",
   "User:0009": "No token or invalid token",
   "User:0010": "You do not have permission to access this resource",
   "User:0011": "Authentication failed",
+  "User:0012": "Access Denied",
 
   "Role:0001": "Name Already Exist",
   "Api:0016": "{0} Name Already Exist",

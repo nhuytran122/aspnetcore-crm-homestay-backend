@@ -27,6 +27,14 @@ using CRM_Homestay.Contract.Roles;
 
 using CRM_Homestay.Entity.Users;
 using CRM_Homestay.Entity.Roles;
+using CRM_Homestay.Service.Users;
+using CRM_Homestay.Contract.Locations;
+using CRM_Homestay.Service.Locations;
+using CRM_Homestay.Service.Password;
+using CRM_Homestay.Contract.Password;
+using CRM_Homestay.Service.Roles;
+using CRM_Homestay.Contract.Uploads;
+using CRM_Homestay.Service.Uploads;
 
 namespace CRM_Homestay.App.ServiceInstallers;
 
@@ -292,5 +300,11 @@ public static class Installers
     {
         _services.AddScoped<ILocalizer, Localizer>();
         _services.AddScoped<IUnitOfWork, UnitOfWork>();
+        _services.AddScoped<ILocationService, LocationService>();
+        _services.AddScoped<ILocationServiceShared, LocationServiceShared>();
+        _services.AddScoped<IUploadService, UploadService>();
+        _services.AddScoped<IRoleService, RoleService>();
+        _services.AddScoped<IPasswordHasher, PasswordHasher>();
+        _services.AddScoped<IUserService, UserService>();
     }
 }

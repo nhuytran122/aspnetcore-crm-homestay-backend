@@ -26,7 +26,7 @@ public class User : IdentityUser<Guid>, IBaseEntity
     public string Introduction { get; set; } = "Hello";
     public Gender Gender { get; set; } = Gender.Unknown;
     public bool IsActive { get; set; }
-    public bool IsDelete { get; set; }
+    public DateTime? DeletedAt { get; set; }
     public string? AvatarURL { get; set; }
 
     [Column(TypeName = "json")]
@@ -47,5 +47,7 @@ public class User : IdentityUser<Guid>, IBaseEntity
     public List<ImportProduct>? ImportProducts { get; set; }
     public List<BookingPayment>? BookingPayments { get; set; }
     public List<BookingService>? AssignedServices { get; set; }
+    public List<BookingService>? CreatedServices { get; set; }
+    
 }
 

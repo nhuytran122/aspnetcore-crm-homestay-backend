@@ -26,5 +26,6 @@ namespace CRM_Homestay.Entity.BookingServices
         public User? AssignedStaff { get; set; }
         public BookingPaymentDetail? BookingPaymentDetail { get; set; }
         public List<BookingServiceItem>? BookingServiceItems { get; set; }
+        public User? Creator { get; set; }
     }
 }

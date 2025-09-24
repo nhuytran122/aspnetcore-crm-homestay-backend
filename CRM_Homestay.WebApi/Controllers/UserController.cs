@@ -146,9 +146,10 @@ public class UserController : BaseController
     /// <returns></returns>
     [HttpGet]
     [Route("get-with-navigation-properties/{id}")]
+    [Authorize(Roles = $"{nameof(RoleEnum.admin)}, {nameof(RoleEnum.technical_staff)}")]
     public async Task<UserWithNavigationPropertiesDto> GetWithNavigationPropertiesAsync(Guid id)
     {
-        return await _userService.GetWithNavigationPropertiesAsync(id, GetCurrentUserId(), GetCurrentRole());
+        return await _userService.GetWithNavigationPropertiesAsync(id);
     }
 
     /// <summary>
@@ -156,7 +157,7 @@ public class UserController : BaseController
     /// </summary>
     /// <param name="input"></param>
     [HttpPost]
-    [Authorize(Roles = $"{nameof(RoleEnum.admin)}")]
+    [Authorize(Roles = $"{nameof(RoleEnum.admin)}, {nameof(RoleEnum.technical_staff)}")]
     [Route("create-with-navigation-properties")]
     public async Task CreateWithNavigationPropertiesAsync(CreateUserDto input)
     {
@@ -170,11 +171,10 @@ public class UserController : BaseController
     /// <param name="id"></param>
     [HttpPut]
     [Route("update-with-navigation-properties/{id}")]
-    [Authorize(Roles = $"{nameof(RoleEnum.admin)}")]
-
+    [Authorize(Roles = $"{nameof(RoleEnum.admin)}, {nameof(RoleEnum.technical_staff)}")]
     public async Task UpdateWithNavigationPropertiesAsync(UpdateUserDto input, Guid id)
     {
-        await _userService.UpdateWithNavigationPropertiesAsync(input, id, GetCurrentUserId(), GetCurrentRole());
+        await _userService.UpdateWithNavigationPropertiesAsync(input, id);
     }
 
     /// <summary>
@@ -198,9 +198,10 @@ public class UserController : BaseController
     /// <returns></returns>
     [HttpPut]
     [Route("reset-password/{id}")]
+    [Authorize(Roles = $"{nameof(RoleEnum.admin)}, {nameof(RoleEnum.technical_staff)}")]
     public async Task ResetPasswordAsync(ResetRequestDto request, Guid id)
     {
-        await _userService.ResetPasswordAsync(request, id, GetCurrentUserId(), GetCurrentRole());
+        await _userService.ResetPasswordAsync(request, id);
     }
 
     /// <summary>

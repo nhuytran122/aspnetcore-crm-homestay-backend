@@ -47,6 +47,7 @@ public class UserErrorCode
     public const string Unauthorized = "User:0009";
     public const string Forbidden = "User:0010";
     public const string ValidationFailed = "User:0011";
+    public const string AccessDenied = "User:0012";
 }
 
 public class CustomerAccountErrorCode

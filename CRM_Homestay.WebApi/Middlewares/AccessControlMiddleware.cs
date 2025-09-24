@@ -95,7 +95,7 @@ public class AccessControlMiddleware
         using (var scope = _serviceProvider.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<HomestayContext>();
-            return await dbContext.Users.AnyAsync(x => x.Id == userId && x.IsLoggedIn && !x.IsDelete);
+            return await dbContext.Users.AnyAsync(x => x.Id == userId && x.IsLoggedIn && !x.DeletedAt.HasValue);
         }
     }
 

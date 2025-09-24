@@ -2,6 +2,7 @@
 using CRM_Homestay.Core.Enums;
 using CRM_Homestay.Core.Models;
 using CRM_Homestay.Entity.Bases;
+using CRM_Homestay.Entity.Bookings;
 using CRM_Homestay.Entity.Coupons;
 using CRM_Homestay.Entity.CustomerGroups;
 using CRM_Homestay.Entity.Users;
@@ -22,7 +23,7 @@ public class Customer : BaseEntity
     public string NormalizedEmail { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
     public Gender Gender { get; set; } = Gender.Unknown;
-    public bool IsDelete { get; set; }
+    public DateTime? DeletedAt { get; set; }
     [Column(TypeName = "json")]
     public Address? Address { get; set; }
 
@@ -34,4 +35,5 @@ public class Customer : BaseEntity
     public string? NormalizeAddress { get; set; }
     public CustomerAccount? CustomerAccount { get; set; }
     public List<Coupon>? Coupons { get; set; }
+    public List<Booking>? Bookings { get; set; }
 }

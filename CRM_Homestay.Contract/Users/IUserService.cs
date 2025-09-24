@@ -10,11 +10,11 @@ public interface IUserService : IApplicationService
     public Task<PagedResultDto<UserWithNavigationPropertiesDto>> GetListWithNavigationPropertiesAsync(UserFilterDto filter);
 
 
-    public Task<UserWithNavigationPropertiesDto> GetWithNavigationPropertiesAsync(Guid id, Guid currentId, string role);
+    public Task<UserWithNavigationPropertiesDto> GetWithNavigationPropertiesAsync(Guid id);
     public Task<UserDto> GetAsync(Guid id);
 
     public Task CreateWithNavigationPropertiesAsync(CreateUserDto input, string role);
-    public Task UpdateWithNavigationPropertiesAsync(UpdateUserDto input, Guid id, Guid currentId, string role);
+    public Task UpdateWithNavigationPropertiesAsync(UpdateUserDto input, Guid id);
     public Task<UserDto> UpdateProfilesAsync(UpdateProfileRequestDto input, Guid id);
     public Task<List<UserDto>> GetListAsync();
 
@@ -22,7 +22,7 @@ public interface IUserService : IApplicationService
     public Task<UserDto> SignUpAsync(CreateUserDto input);
 
 
-    public Task ResetPasswordAsync(ResetRequestDto request, Guid id, Guid currentId, string role);
+    public Task ResetPasswordAsync(ResetRequestDto request, Guid id);
     public Task SetNewPasswordAsync(NewPasswordRequestDto input, Guid id);
 
     public Task<List<ClaimDto>> GetClaims(Guid id);
