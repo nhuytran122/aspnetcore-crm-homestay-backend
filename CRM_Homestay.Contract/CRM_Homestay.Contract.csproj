@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>CRM_Homestay.Contract</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <ProjectReference Include="..\CRM_Homestay.Entity\CRM_Homestay.Entity.csproj" />
+    </ItemGroup>
+
+</Project>
