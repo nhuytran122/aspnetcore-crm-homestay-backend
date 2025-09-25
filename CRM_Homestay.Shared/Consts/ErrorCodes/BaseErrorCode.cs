@@ -109,3 +109,10 @@ public class BranchErrorCode
     public const string IsMainBranch = "Branch:0004";
     public const string MustHaveMainBranch = "Branch:0005";
 }
+
+public class RoomTypeErrorCode
+{
+    public const string AlreadyExists = "RoomType:0001";
+    public const string NotFound = "RoomType:0002";
+    public const string NotAllowedDelete = "RoomType:0003";
+}

@@ -11,6 +11,7 @@ namespace CRM_Homestay.Entity.RoomTypes
         public string Description { get; set; } = string.Empty;
         public int MaxGuests { get; set; } = 1;
         public Guid? MediaId { get; set; }
+        public string? NormalizeFullInfo { get; set; }
         public DateTime? DeletedAt { get; set; }
         public List<Room>? Rooms { get; set; }
         public List<RoomPricing>? RoomPricings { get; set; }

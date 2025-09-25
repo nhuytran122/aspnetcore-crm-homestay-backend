@@ -3,10 +3,10 @@ using CRM_Homestay.Core.Enums;
 
 namespace CRM_Homestay.Contract.Branches
 {
-    public class BranchFilterDto : FilterBase
+    public class BranchFilterDto : FilterBase, IPagedResultRequest
     {
         public BranchStatuses? Status { get; set; }
-        public int PageIndex { get; set; } = 1;
-        public int PageSize { get; set; } = 10;
+        public int CurrentPage { get; set; } = 1;
+        public int PageSize { get; set; } = 20;
     }
 }

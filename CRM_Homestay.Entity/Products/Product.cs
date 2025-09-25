@@ -13,6 +13,7 @@ namespace CRM_Homestay.Entity.Products
         public Guid? MediaId { get; set; }
         public bool Enable { get; set; }
         public string? Description { get; set; }
+        public string? NormalizeFullInfo { get; set; }
 
         public ProductCategory? ProductCategory { get; set; }
         public List<ImportProductDetail>? ImportProductDetails { get; set; }

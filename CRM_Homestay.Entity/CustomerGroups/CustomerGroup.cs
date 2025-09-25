@@ -15,9 +15,9 @@ public class CustomerGroup : BaseEntity
     public double MinPoints { get; set; } = 0;
     public string? Description { get; set; }
     public bool IsActive { get; set; } = true;
+    public string? NormalizeFullInfo { get; set; }
     public DateTime? DeletedAt { get; set; }
 
     //navigation
     public List<Customer>? Customers { get; set; }
-    public string? NormalizeFullInfo { get; set; }
 }

@@ -8,6 +8,7 @@ namespace CRM_Homestay.Entity.ProductCategories
         public string Name { get; set; } = string.Empty;
         public bool IsActive { get; set; } = true;
         public int TypeCategory { get; set; }
+        public string? NormalizeFullInfo { get; set; }
 
         public List<Product>? Products { get; set; }
 

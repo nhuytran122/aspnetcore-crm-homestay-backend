@@ -236,7 +236,7 @@ namespace CRM_Homestay.Service.Branches
                                                             MediaUrl = x.Media != null ? rootUrl + x.Media.FilePath : null,
                                                         });
 
-            var data = await query.GetPaged(input.PageIndex, input.PageSize);
+            var data = await query.GetPaged(input.CurrentPage, input.PageSize);
             var result = ObjectMapper.Map<PagedResult<BranchDto>, PagedResultDto<BranchDto>>(data);
 
             foreach (var item in result.Items)

@@ -13,6 +13,7 @@ namespace CRM_Homestay.Entity.HomestayMaintenances
         public MaintenanceTypes Type { get; set; } = MaintenanceTypes.Other;
         public MaintenanceTargets Target { get; set; } = MaintenanceTargets.Other;
         public string Description { get; set; } = string.Empty;
+        public string? NormalizeFullInfo { get; set; }
         public DateTime? DeletedAt { get; set; }
 
         public Branch? Branch { get; set; }
