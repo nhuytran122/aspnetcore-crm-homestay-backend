@@ -1,7 +1,7 @@
 ﻿using CRM_Homestay.Contract.Bases;
 using CRM_Homestay.Contract.Claims;
 using CRM_Homestay.Contract.Users;
-using CRM_Homestay.Core.Enums;
+using CRM_Homestay.Core.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +11,7 @@ namespace CRM_Homestay.App.Controllers;
 /// UserController
 /// </summary>
 [ApiController]
-[Route("api/user/")]
+[Route("api/users/")]
 [Authorize]
 public class UserController : BaseController
 {
@@ -146,7 +146,7 @@ public class UserController : BaseController
     /// <returns></returns>
     [HttpGet]
     [Route("get-with-navigation-properties/{id}")]
-    [Authorize(Roles = $"{nameof(RoleEnum.admin)}, {nameof(RoleEnum.technical_staff)}")]
+    [Authorize(Roles = RoleCodes.ADMIN_AND_TECHNICAL)]
     public async Task<UserWithNavigationPropertiesDto> GetWithNavigationPropertiesAsync(Guid id)
     {
         return await _userService.GetWithNavigationPropertiesAsync(id);
@@ -157,7 +157,7 @@ public class UserController : BaseController
     /// </summary>
     /// <param name="input"></param>
     [HttpPost]
-    [Authorize(Roles = $"{nameof(RoleEnum.admin)}, {nameof(RoleEnum.technical_staff)}")]
+    [Authorize(Roles = RoleCodes.ADMIN_AND_TECHNICAL)]
     [Route("create-with-navigation-properties")]
     public async Task CreateWithNavigationPropertiesAsync(CreateUserDto input)
     {
@@ -171,7 +171,7 @@ public class UserController : BaseController
     /// <param name="id"></param>
     [HttpPut]
     [Route("update-with-navigation-properties/{id}")]
-    [Authorize(Roles = $"{nameof(RoleEnum.admin)}, {nameof(RoleEnum.technical_staff)}")]
+    [Authorize(Roles = RoleCodes.ADMIN_AND_TECHNICAL)]
     public async Task UpdateWithNavigationPropertiesAsync(UpdateUserDto input, Guid id)
     {
         await _userService.UpdateWithNavigationPropertiesAsync(input, id);
@@ -198,7 +198,7 @@ public class UserController : BaseController
     /// <returns></returns>
     [HttpPut]
     [Route("reset-password/{id}")]
-    [Authorize(Roles = $"{nameof(RoleEnum.admin)}, {nameof(RoleEnum.technical_staff)}")]
+    [Authorize(Roles = RoleCodes.ADMIN_AND_TECHNICAL)]
     public async Task ResetPasswordAsync(ResetRequestDto request, Guid id)
     {
         await _userService.ResetPasswordAsync(request, id);

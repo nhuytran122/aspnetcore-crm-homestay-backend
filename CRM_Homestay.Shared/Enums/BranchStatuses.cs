@@ -5,8 +5,8 @@ namespace CRM_Homestay.Core.Enums
     public enum BranchStatuses
     {
         [Description("Không hoạt động")]
-        Inactive,
+        Inactive = 0,
         [Description("Đang hoạt động")]
-        Active
+        Active = 1
     }
 }

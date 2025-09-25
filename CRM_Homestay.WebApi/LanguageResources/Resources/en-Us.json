@@ -8,7 +8,6 @@
   "Api:0009": "Not Execute.Please notify to developing team",
   "Api:0010": "Name Already Exist",
   "Api:0011": "PhoneNumber Already Exist",
-  "User:0001": "Old password is incorrect, please check again",
   "Api:0012": "Account number Already Exist",
   "Api:0013": "Deletion is not allowed",
   "Api:0014": "Company Already Exist",
@@ -20,6 +19,9 @@
   "Api:0022": "Clean the data of the tables that need to be added before import data",
   "Api:0023": "Bucket {0} does not exist",
   "Api:0024": "{0} not found",
+
+  "User": "User",
+  "User:0001": "Old password is incorrect, please check again",
   "User:0002": "UserName Already Exist",
   "User:0003": "Incorrect login information please check again",
   "User:0004": "Account is deactivate",
@@ -87,5 +89,12 @@
   "NOT_ALLOW_UPDATE": "You do not have permission to update status for this account.",
   "EMAIL_ALREADY_VERIFIED": "Email has been verified, update not allowed.",
   "NOT_CANCEL": "Order cannot be canceled",
-  "Validator.EnumInvalid": "Invalid type"
+  "Validator.EnumInvalid": "Invalid type",
+
+  "Branch": "Branch",
+  "Branch:0001": "This branch already exists",
+  "Branch:0002": "This branch does not exist",
+  "Branch:0003": "Cannot delete branch because there are products in stock",
+  "Branch:0004": "Not allowed to delete main branch",
+  "Branch:0005": "There must be at least one main branch in the system"
 }
