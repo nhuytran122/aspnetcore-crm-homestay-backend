@@ -1,4 +1,5 @@
 using CRM_Homestay.Contract.Bases;
+using CRM_Homestay.Contract.RoomPricings;
 using CRM_Homestay.Contract.RoomTypes;
 using CRM_Homestay.Core.Consts;
 using Microsoft.AspNetCore.Authorization;
@@ -15,14 +16,17 @@ namespace CRM_Homestay.App.Controllers
     public class RoomTypeController : BaseController
     {
         private readonly IRoomTypeService _roomTypeService;
+        private readonly IRoomPricingService _pricingService;
         /// <summary>
         /// RoomTypeController init
         /// </summary>
         /// <param name="roomTypeService"></param>
+        /// /// <param name="pricingService"></param>
         /// <param name="httpContextAccessor"></param>
-        public RoomTypeController(IRoomTypeService roomTypeService, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
+        public RoomTypeController(IRoomTypeService roomTypeService, IRoomPricingService pricingService, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             _roomTypeService = roomTypeService;
+            _pricingService = pricingService;
         }
 
         /// <summary>
@@ -95,6 +99,18 @@ namespace CRM_Homestay.App.Controllers
         public async Task<List<RoomTypeDto>> GetAll()
         {
             return await _roomTypeService.GetAllAsync();
+        }
+
+        /// <summary>
+        /// Lấy toàn bộ giá của loại phòng (hoạt động + không + xóa mềm (chỉ lấy những giá phòng xóa trong vòng 3 tháng))
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("room-pricings/{id}")]
+        [Authorize(Roles = RoleCodes.ALL)]
+        public async Task<List<RoomPricingDto>> GetByRoomTypeId(Guid id)
+        {
+            return await _pricingService.GetPricingByRoomTypeId(id);
         }
     }
 }

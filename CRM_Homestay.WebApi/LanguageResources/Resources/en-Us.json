@@ -70,6 +70,9 @@
   "QuantityNotEnough": "Quantity exceeds inventory",
   "DateErrorCode:0001": "Month-year format doesn't match",
   "DateErrorCode:0002": "Quarter must have a value between 1 and 4",
+  "DateErrorCode:0003": "Invalid date range",
+  "DateErrorCode:0004": "Start date must be greater than the current time",
+
   "MustBeGreaterThanZero": "Quantity must be greater than zero",
 
   "PHONE_ALREADY_USED": "Phone number already in use",
@@ -104,5 +107,12 @@
   "RoomType": "Room Type",
   "RoomType:0001": "This room type already exists",
   "RoomType:0002": "This room type does not exist",
-  "RoomType:0003": "Cannot delete room type that is in use"
+  "RoomType:0003": "Cannot delete room type that is in use",
+
+  "RoomPricing": "Room Pricing",
+  "RoomPricing:0001": "Room pricing dates overlap with an existing pricing. Please adjust the start and end date",
+  "RoomPricing:0002": "Start date and end date are required when pricing is not default",
+  "RoomPricing:0003": "This room pricing does not exist",
+  "RoomPricing:0004": "Cannot remove 'IsDefault' from the only default pricing",
+  "RoomPricing:0005": "Default room pricing cannot be deleted"
 }

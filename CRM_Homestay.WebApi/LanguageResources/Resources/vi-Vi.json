@@ -75,6 +75,7 @@
   "DateErrorCode:0001": "Tháng-năm không đúng chuẩn",
   "DateErrorCode:0002": "Quý phải có giá trị từ 1 đến 4",
   "DateErrorCode:0003": "Khoảng ngày không hợp lệ",
+  "DateErrorCode:0004": "Thời gian bắt đầu phải lớn hơn thời gian hiện tại",
   "MustBeGreaterThanZero": "Số lượng phải lớn hơn 0",
 
   "PHONE_ALREADY_USED": "Số điện thoại đã được sử dụng",
@@ -110,5 +111,12 @@
   "RoomType": "Loại phòng",
   "RoomType:0001": "Loại phòng đã tồn tại",
   "RoomType:0002": "Loại phòng không tồn tại",
-  "RoomType:0003": "Không được phép xóa loại phòng đang được sử dụng"
+  "RoomType:0003": "Không được phép xóa loại phòng đang được sử dụng",
+
+  "RoomPricing": "Mức giá phòng",
+  "RoomPricing:0001": "Khoảng thời gian giá phòng bị trùng với một mức giá khác. Vui lòng điều chỉnh ngày bắt đầu và kết thúc",
+  "RoomPricing:0002": "Vui lòng nhập cả ngày bắt đầu và ngày kết thúc khi giá không phải mặc định",
+  "RoomPricing:0003": "Giá phòng không tồn tại",
+  "RoomPricing:0004": "Không thể bỏ cờ 'Mặc định' khỏi giá duy nhất đang được đặt mặc định",
+  "RoomPricing:0005": "Không thể xóa giá phòng mặc định"
 }

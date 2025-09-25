@@ -16,6 +16,8 @@ using CRM_Homestay.Entity.Branches;
 using CRM_Homestay.Contract.Branches;
 using CRM_Homestay.Entity.RoomTypes;
 using CRM_Homestay.Contract.RoomTypes;
+using CRM_Homestay.Entity.RoomPricings;
+using CRM_Homestay.Contract.RoomPricings;
 
 namespace CRM_Homestay.Service;
 
@@ -57,5 +59,9 @@ public class AutoMapperProfile : Profile
         CreateMap<User, UserPropertiesDto>();
         CreateMap<RoomType, RoomTypeDto>();
         CreateMap<CreateUpdateRoomTypeDto, RoomType>();
+
+        CreateMap<RoomPricing, RoomPricingDto>();
+        CreateMap<CreateRoomPricingDto, RoomPricing>();
+        CreateMap<UpdateRoomPricingDto, RoomPricing>();
     }
 }

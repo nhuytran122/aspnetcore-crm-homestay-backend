@@ -32,6 +32,8 @@ public class BaseErrorCode
     public const string QuantityNotEnough = "QuantityNotEnough";
     public const string User = "User";
     public const string Branch = "Branch";
+    public const string RoomType = "RoomType";
+    public const string RoomPricing = "RoomPricing";
     public const string UnexpectedError = "UNEXPECTED_ERROR";
 }
 
@@ -99,6 +101,7 @@ public class DateErrorCode
     public const string NotMatchFormat = "DateErrorCode:0001";
     public const string QuarterIncorrect = "DateErrorCode:0002";
     public const string DateRangeIncorrect = "DateErrorCode:0003";
+    public const string StartDateMustBeFuture = "DateErrorCode:0004";
 }
 
 public class BranchErrorCode
@@ -115,4 +118,13 @@ public class RoomTypeErrorCode
     public const string AlreadyExists = "RoomType:0001";
     public const string NotFound = "RoomType:0002";
     public const string NotAllowedDelete = "RoomType:0003";
+}
+
+public class RoomPricingErrorCode
+{
+    public const string OverlappingDateRange = "RoomPricing:0001";
+    public const string NonDefaultPricingDatesRequired = "RoomPricing:0002";
+    public const string NotFound = "RoomPricing:0003";
+    public const string CannotRemoveOnlyDefaultPricing = "RoomPricing:0004";
+    public const string NotAllowedDelete = "RoomPricing:0005";
 }
