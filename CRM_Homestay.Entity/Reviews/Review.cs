@@ -1,7 +1,6 @@
 using CRM_Homestay.Entity.Bases;
 using CRM_Homestay.Entity.Bookings;
 using CRM_Homestay.Entity.Media;
-using CRM_Homestay.Entity.Medias;
 
 namespace CRM_Homestay.Entity.Reviews
 {

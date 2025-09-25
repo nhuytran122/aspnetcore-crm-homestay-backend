@@ -36,6 +36,8 @@ using CRM_Homestay.Contract.Uploads;
 using CRM_Homestay.Service.Uploads;
 using CRM_Homestay.Contract.Branches;
 using CRM_Homestay.Service.Branches;
+using CRM_Homestay.Contract.RoomTypes;
+using CRM_Homestay.Service.RoomTypes;
 
 namespace CRM_Homestay.App.ServiceInstallers;
 
@@ -308,5 +310,6 @@ public static class Installers
         _services.AddScoped<IPasswordHasher, PasswordHasher>();
         _services.AddScoped<IUserService, UserService>();
         _services.AddScoped<IBranchService, BranchService>();
+        _services.AddScoped<IRoomTypeService, RoomTypeService>();
     }
 }

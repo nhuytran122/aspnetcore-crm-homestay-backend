@@ -8,6 +8,7 @@ namespace CRM_Homestay.Entity.Amenities
     {
         public string Name { get; set; } = string.Empty;
         public AmenityTypes Type { get; set; } = AmenityTypes.Others;
+        public string? NormalizeFullInfo { get; set; }
         public List<RoomAmenity>? RoomAmenities { get; set; }
     }
 }

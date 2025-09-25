@@ -65,6 +65,9 @@
   "Validator.MustBeAtLeast10YearsOld": "Ngày sinh phải từ 10 tuổi trở lên",
   "Validator.RatingOutOfRange": "Giá trị rating phải từ {0} đến {1}.",
   "Validator.MustBeGreaterThanOrEqualToZero": "Giá trị phải lớn hơn hoặc bằng 0",
+  "Validator.GreaterThan": "Giá trị phải lớn hơn hoặc bằng {0}",
+  "Validator.EndDateMustBeAfterStartDate": "Ngày kết thúc phải sau ngày bắt đầu",
+
   "Store:0001": "Cửa hàng này đã tồn tại",
   "Duplicate": "{0} trùng",
   "ZeroQuantity": "Không thể chỉnh số lượng về 0, hãy thực hiện xóa để thay thế",
@@ -102,5 +105,10 @@
   "Branch:0002": "Chi nhánh này không tồn tại",
   "Branch:0003": "Không thể xóa chi nhánh vì có sản phẩm trong kho",
   "Branch:0004": "Không được phép xóa chi nhánh chính",
-  "Branch:0005": "Phải có ít nhất một chi nhánh chính trong hệ thống"
+  "Branch:0005": "Phải có ít nhất một chi nhánh chính trong hệ thống",
+
+  "RoomType": "Loại phòng",
+  "RoomType:0001": "Loại phòng đã tồn tại",
+  "RoomType:0002": "Loại phòng không tồn tại",
+  "RoomType:0003": "Không được phép xóa loại phòng đang được sử dụng"
 }
