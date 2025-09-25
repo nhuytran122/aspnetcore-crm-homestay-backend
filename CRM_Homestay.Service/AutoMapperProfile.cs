@@ -12,6 +12,8 @@ using CRM_Homestay.Entity.Provinces;
 using CRM_Homestay.Contract.Locations;
 using Ward = CRM_Homestay.Entity.Wards.Ward;
 using System.Security.Claims;
+using CRM_Homestay.Entity.Branches;
+using CRM_Homestay.Contract.Branches;
 
 namespace CRM_Homestay.Service;
 
@@ -46,6 +48,8 @@ public class AutoMapperProfile : Profile
 
         CreateMap<SystemSetting, SystemSettingDto>();
         CreateMap<CreateUpdateSystemSettingDto, SystemSetting>();
+        CreateMap<Branch, BranchDto>();
+        CreateMap<CreateUpdateBranchDto, Branch>();
 
         // Users
         CreateMap<User, UserPropertiesDto>();

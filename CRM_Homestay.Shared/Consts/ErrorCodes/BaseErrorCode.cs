@@ -31,6 +31,7 @@ public class BaseErrorCode
     public const string ZeroQuantity = "ZeroQuantity";
     public const string QuantityNotEnough = "QuantityNotEnough";
     public const string User = "User";
+    public const string Branch = "Branch";
     public const string UnexpectedError = "UNEXPECTED_ERROR";
 }
 
@@ -98,4 +99,13 @@ public class DateErrorCode
     public const string NotMatchFormat = "DateErrorCode:0001";
     public const string QuarterIncorrect = "DateErrorCode:0002";
     public const string DateRangeIncorrect = "DateErrorCode:0003";
+}
+
+public class BranchErrorCode
+{
+    public const string AlreadyExists = "Branch:0001";
+    public const string NotFound = "Branch:0002";
+    public const string NotAllowedDelete = "Branch:0003";
+    public const string IsMainBranch = "Branch:0004";
+    public const string MustHaveMainBranch = "Branch:0005";
 }

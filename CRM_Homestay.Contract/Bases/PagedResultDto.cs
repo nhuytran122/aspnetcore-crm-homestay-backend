@@ -11,6 +11,6 @@ public class PagedResultDto<T>
     public decimal? TotalCashAdvance { get; set; }
     public decimal? TotalCashOfOrder { get; set; }
     public decimal? TotalSpentDuringDay { get; set; }
-    public decimal? TotalAmoutHeld { get; set; }
-    public decimal? TotalOrderAmout { get; set; }
+    public decimal? TotalAmountHeld { get; set; }
+    public decimal? TotalOrderAmount { get; set; }
 }

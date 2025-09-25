@@ -10,7 +10,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Npgsql;
 using System.Reflection;
-using System.Security.Claims;
 using System.Text;
 using WatchDog;
 using WatchDog.src.Enums;
@@ -35,6 +34,8 @@ using CRM_Homestay.Contract.Password;
 using CRM_Homestay.Service.Roles;
 using CRM_Homestay.Contract.Uploads;
 using CRM_Homestay.Service.Uploads;
+using CRM_Homestay.Contract.Branches;
+using CRM_Homestay.Service.Branches;
 
 namespace CRM_Homestay.App.ServiceInstallers;
 
@@ -306,5 +307,6 @@ public static class Installers
         _services.AddScoped<IRoleService, RoleService>();
         _services.AddScoped<IPasswordHasher, PasswordHasher>();
         _services.AddScoped<IUserService, UserService>();
+        _services.AddScoped<IBranchService, BranchService>();
     }
 }

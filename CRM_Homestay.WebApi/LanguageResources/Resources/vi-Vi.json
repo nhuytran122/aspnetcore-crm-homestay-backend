@@ -22,6 +22,8 @@
   "Api:0023": "Bucket {0} không tồn tại",
   "Api:0024": "{0} không tồn tại",
 
+  "User": "Người dùng",
+
   "User:0001": "Mật khẩu không chính xác, vui lòng kiểm tra lại",
   "User:0002": "Tài khoản đã tồn tại",
   "User:0003": "Thông tin đăng nhập không chính xác vui lòng kiểm tra lại",
@@ -93,5 +95,12 @@
   "EMAIL_ALREADY_VERIFIED": "Email đã được xác thực, không được phép cập nhật.",
 
   "Validator.EnumInvalid": "Loại không hợp lệ",
-  "ALREADY_ACTIVE": "Tài khoản đã hoạt động và không cần khôi phục."
+  "ALREADY_ACTIVE": "Tài khoản đã hoạt động và không cần khôi phục.",
+
+  "Branch": "Chi nhánh",
+  "Branch:0001": "Chi nhánh này đã tồn tại",
+  "Branch:0002": "Chi nhánh này không tồn tại",
+  "Branch:0003": "Không thể xóa chi nhánh vì có sản phẩm trong kho",
+  "Branch:0004": "Không được phép xóa chi nhánh chính",
+  "Branch:0005": "Phải có ít nhất một chi nhánh chính trong hệ thống"
 }

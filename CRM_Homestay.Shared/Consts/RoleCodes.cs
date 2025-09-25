@@ -10,4 +10,5 @@ public static class RoleCodes
     public const string SERVICE_STAFF = "service_staff";
 
     public const string ALL = $"{ADMIN},{TECHNICAL_STAFF},{RECEPTIONIST},{HR_STAFF},{HOUSEKEEPING_STAFF},{SERVICE_STAFF}";
+    public const string ADMIN_AND_TECHNICAL = $"{ADMIN},{TECHNICAL_STAFF}";
 }
