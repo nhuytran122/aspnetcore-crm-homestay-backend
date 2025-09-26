@@ -128,3 +128,9 @@ public class RoomPricingErrorCode
     public const string CannotRemoveOnlyDefaultPricing = "RoomPricing:0004";
     public const string NotAllowedDelete = "RoomPricing:0005";
 }
+
+public class AmenityErrorCode
+{
+    public const string AlreadyExists = "Amenity:0001";
+    public const string NotFound = "Amenity:0002";
+}

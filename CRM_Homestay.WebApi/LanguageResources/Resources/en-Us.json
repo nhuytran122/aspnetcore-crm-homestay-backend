@@ -64,6 +64,7 @@
   "Validator.MustBeGreaterThanOrEqualToZero": "Value must be greater than or equal to zero.",
   "Validator.GreaterThan": "Value must be greater than or equal to {0}",
   "Validator.EndDateMustBeAfterStartDate": "End date must be after start date",
+  "Validator.EnumInvalid": "Invalid type",
 
   "Duplicate": "Duplicate {0}",
   "ZeroQuantity": "Cannot set quantity to 0, please delete instead",
@@ -95,7 +96,6 @@
   "NOT_ALLOW_UPDATE": "You do not have permission to update status for this account.",
   "EMAIL_ALREADY_VERIFIED": "Email has been verified, update not allowed.",
   "NOT_CANCEL": "Order cannot be canceled",
-  "Validator.EnumInvalid": "Invalid type",
 
   "Branch": "Branch",
   "Branch:0001": "This branch already exists",
@@ -114,5 +114,9 @@
   "RoomPricing:0002": "Start date and end date are required when pricing is not default",
   "RoomPricing:0003": "This room pricing does not exist",
   "RoomPricing:0004": "Cannot remove 'IsDefault' from the only default pricing",
-  "RoomPricing:0005": "Default room pricing cannot be deleted"
+  "RoomPricing:0005": "Default room pricing cannot be deleted",
+
+  "Amenity": "Amenity",
+  "Amenity:0001": "This amenity already exists",
+  "Amenity:0002": "This amenity does not exist"
 }

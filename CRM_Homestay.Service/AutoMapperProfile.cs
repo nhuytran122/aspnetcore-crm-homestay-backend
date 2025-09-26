@@ -18,6 +18,9 @@ using CRM_Homestay.Entity.RoomTypes;
 using CRM_Homestay.Contract.RoomTypes;
 using CRM_Homestay.Entity.RoomPricings;
 using CRM_Homestay.Contract.RoomPricings;
+using CRM_Homestay.Entity.Amenities;
+using CRM_Homestay.Contract.Amenities;
+using CRM_Homestay.Core.Extensions;
 
 namespace CRM_Homestay.Service;
 
@@ -63,5 +66,10 @@ public class AutoMapperProfile : Profile
         CreateMap<RoomPricing, RoomPricingDto>();
         CreateMap<CreateRoomPricingDto, RoomPricing>();
         CreateMap<UpdateRoomPricingDto, RoomPricing>();
+
+        CreateMap<Amenity, AmenityDto>()
+        .ForMember(dest => dest.Type,
+            opt => opt.MapFrom(src => src.Type.GetDescription()));
+        CreateMap<CreateUpdateAmenityDto, Amenity>();
     }
 }

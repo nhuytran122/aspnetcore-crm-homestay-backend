@@ -67,6 +67,7 @@
   "Validator.MustBeGreaterThanOrEqualToZero": "Giá trị phải lớn hơn hoặc bằng 0",
   "Validator.GreaterThan": "Giá trị phải lớn hơn hoặc bằng {0}",
   "Validator.EndDateMustBeAfterStartDate": "Ngày kết thúc phải sau ngày bắt đầu",
+  "Validator.EnumInvalid": "Loại không hợp lệ",
 
   "Store:0001": "Cửa hàng này đã tồn tại",
   "Duplicate": "{0} trùng",
@@ -98,7 +99,6 @@
   "NOT_ALLOW_UPDATE": "Không được cập nhật trạng thái cho tài khoản này.",
   "EMAIL_ALREADY_VERIFIED": "Email đã được xác thực, không được phép cập nhật.",
 
-  "Validator.EnumInvalid": "Loại không hợp lệ",
   "ALREADY_ACTIVE": "Tài khoản đã hoạt động và không cần khôi phục.",
 
   "Branch": "Chi nhánh",
@@ -118,5 +118,9 @@
   "RoomPricing:0002": "Vui lòng nhập cả ngày bắt đầu và ngày kết thúc khi giá không phải mặc định",
   "RoomPricing:0003": "Giá phòng không tồn tại",
   "RoomPricing:0004": "Không thể bỏ cờ 'Mặc định' khỏi giá duy nhất đang được đặt mặc định",
-  "RoomPricing:0005": "Không thể xóa giá phòng mặc định"
+  "RoomPricing:0005": "Không thể xóa giá phòng mặc định",
+
+  "Amenity": "Tiện nghi",
+  "Amenity:0001": "Tiện nghi này đã tồn tại",
+  "Amenity:0002": "Tiện nghi này không tồn tại"
 }
