@@ -41,6 +41,10 @@ namespace CRM_Homestay.Contract.Validations
 
             RuleFor(x => x.Status)
                 .NotNull().WithMessage(L["Validator.IsRequired"]);
+
+            RuleFor(x => x.IsMainBranch)
+                .Must(x => x == true || x == false)
+                .WithMessage(L["Validator.IsRequired"]);
         }
     }
 }

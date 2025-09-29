@@ -118,5 +118,10 @@
 
   "Amenity": "Amenity",
   "Amenity:0001": "This amenity already exists",
-  "Amenity:0002": "This amenity does not exist"
+  "Amenity:0002": "This amenity does not exist",
+
+  "Room": "Room",
+  "Room:0001": "This room already exists",
+  "Room:0002": "This room does not exist",
+  "Room:0003": "Cannot delete the room because there are pending reservations"
 }

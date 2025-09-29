@@ -37,6 +37,9 @@ namespace CRM_Homestay.Contract.Validations
                 .NotEmpty().WithMessage(L["Validator.IsRequired"])
                 .GreaterThanOrEqualTo(0).WithMessage(L["Validator.MustBeGreaterThanOrEqualToZero"]);
 
+            RuleFor(x => x.IsDefault)
+                .Must(x => x == true || x == false)
+                .WithMessage(L["Validator.IsRequired"]);
             RuleFor(x => x)
                 .Must(x => x.IsDefault || (x.StartAt != null && x.EndAt != null))
                 .WithMessage(L[RoomPricingErrorCode.NonDefaultPricingDatesRequired]);
@@ -75,6 +78,9 @@ namespace CRM_Homestay.Contract.Validations
                 .NotEmpty().WithMessage(L["Validator.IsRequired"])
                 .GreaterThanOrEqualTo(0).WithMessage(L["Validator.MustBeGreaterThanOrEqualToZero"]);
 
+            RuleFor(x => x.IsDefault)
+                .Must(x => x == true || x == false)
+                .WithMessage(L["Validator.IsRequired"]);
             RuleFor(x => x)
                 .Must(x => x.IsDefault || (x.StartAt != null && x.EndAt != null))
                 .WithMessage(L[RoomPricingErrorCode.NonDefaultPricingDatesRequired]);

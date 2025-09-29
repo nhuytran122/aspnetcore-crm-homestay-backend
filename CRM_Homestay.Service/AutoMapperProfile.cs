@@ -21,6 +21,10 @@ using CRM_Homestay.Contract.RoomPricings;
 using CRM_Homestay.Entity.Amenities;
 using CRM_Homestay.Contract.Amenities;
 using CRM_Homestay.Core.Extensions;
+using CRM_Homestay.Entity.Rooms;
+using CRM_Homestay.Contract.Rooms;
+using CRM_Homestay.Entity.RoomAmenities;
+using CRM_Homestay.Contract.RoomAmenities;
 
 namespace CRM_Homestay.Service;
 
@@ -63,7 +67,9 @@ public class AutoMapperProfile : Profile
         CreateMap<RoomType, RoomTypeDto>();
         CreateMap<CreateUpdateRoomTypeDto, RoomType>();
 
-        CreateMap<RoomPricing, RoomPricingDto>();
+        CreateMap<RoomPricing, RoomPricingDto>()
+            .ForMember(dest => dest.RoomTypeName,
+                opt => opt.MapFrom(src => src.RoomType != null ? src.RoomType.Name : string.Empty));
         CreateMap<CreateRoomPricingDto, RoomPricing>();
         CreateMap<UpdateRoomPricingDto, RoomPricing>();
 
@@ -71,5 +77,35 @@ public class AutoMapperProfile : Profile
         .ForMember(dest => dest.Type,
             opt => opt.MapFrom(src => src.Type.GetDescription()));
         CreateMap<CreateUpdateAmenityDto, Amenity>();
+
+        CreateMap<Room, RoomDto>()
+            .ForMember(dest => dest.BranchName,
+                opt => opt.MapFrom(src => src.Branch != null ? src.Branch.Name : string.Empty))
+            .ForMember(dest => dest.RoomTypeName,
+                opt => opt.MapFrom(src => src.RoomType != null ? src.RoomType.Name : string.Empty));
+
+        CreateMap<Room, RoomDetailDto>();
+        CreateMap<CreateRoomDto, Room>();
+        CreateMap<UpdateRoomDto, Room>()
+            .ForMember(dest => dest.RoomAmenities, opt => opt.Ignore())
+            .ForMember(dest => dest.Medias, opt => opt.Ignore());
+
+        CreateMap<RoomAmenity, RoomAmenityDto>()
+            .ForMember(dest => dest.RoomNumber,
+                opt => opt.MapFrom(src => src.Room != null ? src.Room.RoomNumber : 0))
+            .ForMember(dest => dest.AmenityName,
+                opt => opt.MapFrom(src => src.Amenity != null ? src.Amenity.Name : null))
+            .ForMember(dest => dest.BranchId,
+                opt => opt.MapFrom(src => src.Room != null && src.Room.Branch != null ? (Guid?)src.Room.Branch.Id : null))
+            .ForMember(dest => dest.BranchName,
+                opt => opt.MapFrom(src => src.Room!.Branch != null ? src.Room.Branch.Name : null))
+            .ForMember(dest => dest.Type,
+                opt => opt.MapFrom(src => src.Amenity != null ? src.Amenity.Type.ToString() : null));
+
+        CreateMap<CreateRoomAmenityDto, RoomAmenity>();
+        CreateMap<UpdateRoomAmenityDto, RoomAmenity>();
+
+        CreateMap<CreateAmenityForRoomDto, RoomAmenity>();
+        CreateMap<UpdateAmenityForRoomDto, RoomAmenity>();
     }
 }

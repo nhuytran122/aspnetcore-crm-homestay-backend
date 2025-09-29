@@ -34,6 +34,9 @@ public class BaseErrorCode
     public const string Branch = "Branch";
     public const string RoomType = "RoomType";
     public const string RoomPricing = "RoomPricing";
+    public const string Amenity = "Amenity";
+    public const string RoomAmenity = "RoomAmenity";
+    public const string Room = "Room";
     public const string UnexpectedError = "UNEXPECTED_ERROR";
 }
 
@@ -133,4 +136,11 @@ public class AmenityErrorCode
 {
     public const string AlreadyExists = "Amenity:0001";
     public const string NotFound = "Amenity:0002";
+}
+
+public class RoomErrorCode
+{
+    public const string AlreadyExists = "Room:0001";
+    public const string NotFound = "Room:0002";
+    public const string NotAllowedDelete = "Room:0003";
 }

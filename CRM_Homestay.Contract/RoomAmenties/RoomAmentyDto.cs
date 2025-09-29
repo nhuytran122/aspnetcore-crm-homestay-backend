@@ -1,6 +1,8 @@
+using CRM_Homestay.Contract.Bases;
+
 namespace CRM_Homestay.Contract.RoomAmenities
 {
-    public class RoomAmenityDto
+    public class RoomAmenityDto : BaseEntityDto
     {
         public Guid RoomId { get; set; }
         public int RoomNumber { get; set; }
@@ -9,6 +11,6 @@ namespace CRM_Homestay.Contract.RoomAmenities
         public Guid AmenityId { get; set; }
         public string? AmenityName { get; set; }
         public string? Type { get; set; }
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
     }
 }
