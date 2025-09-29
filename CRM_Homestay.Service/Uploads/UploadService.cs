@@ -130,5 +130,35 @@ public class UploadService : BaseService, IUploadService
             Type = "Image"
         };
     }
+
+    public bool DeleteImages(List<string> imageUrls)
+    {
+        var allSuccess = true;
+
+        foreach (var imageUrl in imageUrls)
+        {
+            try
+            {
+                // string filePath = Path.Combine(RootPath, imageUrl.TrimStart('/'));
+                string filePath = Path.Join(RootPath, imageUrl.TrimStart('\\'));
+
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+                else
+                {
+                    allSuccess = false;
+                }
+            }
+            catch (Exception)
+            {
+                allSuccess = false;
+            }
+        }
+
+        return allSuccess;
+    }
+
 }
 

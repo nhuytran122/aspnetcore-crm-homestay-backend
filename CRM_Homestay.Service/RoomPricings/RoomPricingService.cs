@@ -90,10 +90,7 @@ namespace CRM_Homestay.Service.RoomPricings
                         message: L[RoomPricingErrorCode.NotFound],
                         statusCode: HttpStatusCode.NotFound);
             }
-            var roomPricingDto = ObjectMapper.Map<RoomPricing, RoomPricingDto>(roomPricing);
-
-            roomPricingDto.RoomTypeName = roomPricing.RoomType!.Name;
-            return roomPricingDto;
+            return ObjectMapper.Map<RoomPricing, RoomPricingDto>(roomPricing);
         }
 
         public async Task<RoomPricingDto> UpdateAsync(Guid id, UpdateRoomPricingDto input)
@@ -180,10 +177,7 @@ namespace CRM_Homestay.Service.RoomPricings
             _unitOfWork.GenericRepository<RoomPricing>().Update(updatedItem);
             await _unitOfWork.SaveChangeAsync();
 
-            var dto = ObjectMapper.Map<RoomPricing, RoomPricingDto>(updatedItem);
-            dto.RoomTypeName = roomPricing.RoomType!.Name;
-
-            return dto;
+            return ObjectMapper.Map<RoomPricing, RoomPricingDto>(updatedItem);
         }
         private void HandleInput(CreateRoomPricingDto input)
         {
@@ -228,25 +222,9 @@ namespace CRM_Homestay.Service.RoomPricings
                 .Include(x => x.RoomType)
                 .Where(x => x.RoomTypeId == typeId && !x.DeletedAt.HasValue)
                 .OrderByDescending(x => x.CreationTime)
-                .Select(x => new RoomPricingDto
-                {
-                    Id = x.Id,
-                    RoomTypeId = x.RoomTypeId,
-                    BaseDuration = x.BaseDuration,
-                    BasePrice = x.BasePrice,
-                    ExtraHourPrice = x.ExtraHourPrice,
-                    OvernightPrice = x.OvernightPrice,
-                    DailyPrice = x.DailyPrice,
-                    StartAt = x.StartAt,
-                    EndAt = x.EndAt,
-                    Description = x.Description,
-                    IsDefault = x.IsDefault,
-                    RoomTypeName = x.RoomType!.Name,
-                    CreationTime = x.CreationTime
-                })
                 .ToListAsync();
 
-            return result;
+            return ObjectMapper.Map<List<RoomPricing>, List<RoomPricingDto>>(result);
         }
 
         public async Task<List<RoomPricingDto>> GetAllAsync()
@@ -259,24 +237,9 @@ namespace CRM_Homestay.Service.RoomPricings
                 .Include(x => x.RoomType)
                 .Where(x => !x.DeletedAt.HasValue || (x.DeletedAt.HasValue && x.DeletedAt.Value.Date >= threeMonthsAgo.Date))
                 .OrderByDescending(x => x.RoomTypeId)
-                .Select(x => new RoomPricingDto
-                {
-                    Id = x.Id,
-                    RoomTypeId = x.RoomTypeId,
-                    BaseDuration = x.BaseDuration,
-                    BasePrice = x.BasePrice,
-                    ExtraHourPrice = x.ExtraHourPrice,
-                    OvernightPrice = x.OvernightPrice,
-                    DailyPrice = x.DailyPrice,
-                    StartAt = x.StartAt,
-                    EndAt = x.EndAt,
-                    Description = x.Description,
-                    IsDefault = x.IsDefault,
-                    RoomTypeName = x.RoomType!.Name,
-                    CreationTime = x.CreationTime
-                })
                 .ToListAsync();
-            return result;
+
+            return ObjectMapper.Map<List<RoomPricing>, List<RoomPricingDto>>(result);
         }
     }
 }

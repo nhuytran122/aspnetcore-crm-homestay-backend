@@ -5,6 +5,7 @@ using CRM_Homestay.Entity.HomestayMaintenances;
 using CRM_Homestay.Entity.Medias;
 using CRM_Homestay.Entity.RoomAmenities;
 using CRM_Homestay.Entity.RoomTypes;
+using CRM_Homestay.Entity.RoomUsages;
 
 namespace CRM_Homestay.Entity.Rooms
 {
@@ -21,10 +22,6 @@ namespace CRM_Homestay.Entity.Rooms
         public List<MaintenanceRoom>? MaintenanceRooms { get; set; }
         public List<RoomAmenity>? RoomAmenities { get; set; }
         public List<MediaRoom>? Medias { get; set; }
-    }
-    public class BranchInfo
-    {
-        public Guid BranchId { get; set; }
-        public string BranchName { get; set; } = string.Empty;
+        public List<RoomUsage>? RoomUsages { get; set; }
     }
 }

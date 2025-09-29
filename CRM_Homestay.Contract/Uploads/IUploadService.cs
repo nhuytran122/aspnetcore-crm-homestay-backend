@@ -15,4 +15,5 @@ public interface IUploadService
     public bool DeleteImage(string imageUrl);
     Task<List<BaseMedia>> UploadImgs(List<IFormFile> file, string path);
     Task<BaseMedia> UploadImg(IFormFile file, string path);
+    bool DeleteImages(List<string> imageUrls);
 }

@@ -122,5 +122,10 @@
 
   "Amenity": "Tiện nghi",
   "Amenity:0001": "Tiện nghi này đã tồn tại",
-  "Amenity:0002": "Tiện nghi này không tồn tại"
+  "Amenity:0002": "Tiện nghi này không tồn tại",
+
+  "Room": "Phòng",
+  "Room:0001": "Phòng này đã tồn tại",
+  "Room:0002": "Phòng này không tồn tại",
+  "Room:0003": "Không thể xóa phòng vì đang có đơn đặt phòng chờ xử lý"
 }
