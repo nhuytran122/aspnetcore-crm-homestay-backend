@@ -127,5 +127,17 @@
   "Room": "Phòng",
   "Room:0001": "Phòng này đã tồn tại",
   "Room:0002": "Phòng này không tồn tại",
-  "Room:0003": "Không thể xóa phòng vì đang có đơn đặt phòng chờ xử lý"
+  "Room:0003": "Không thể xóa phòng vì đang có đơn đặt phòng chờ xử lý",
+
+  "ServiceItem": "Thiết bị dịch vụ",
+  "ServiceItem:0001": "Identifier, Brand và Model là bắt buộc khi loại là xe",
+  "ServiceItem:0002": "Thiết bị dịch vụ đã tồn tại",
+  "ServiceItem:0003": "Thiết bị dịch vụ không tồn tại",
+  "ServiceItem:0004": "Không thể xóa thiết bị dịch vụ này vì nó đang được sử dụng trong một đặt dịch vụ còn hiệu lực",
+
+  "HomestayService": "Dịch vụ",
+  "HomestayService:0001": "Dịch vụ này đã tồn tại",
+  "HomestayService:0002": "Dịch vụ này không tồn tại",
+  "HomestayService:0003": "Không thể xóa dịch vụ vì đang có đơn đặt phòng chờ xử lý",
+  "HomestayService:0004": "Không thể xóa dịch vụ vì vẫn còn cơ sở vật chất thuộc về dịch vụ này."
 }

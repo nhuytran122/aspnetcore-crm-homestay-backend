@@ -12,6 +12,7 @@ namespace CRM_Homestay.Entity.HomestayServices
         public bool HasInventory { get; set; } = false;
         public string? Description { get; set; }
         public string? NormalizeFullInfo { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public List<ServiceItem>? ServiceItems { get; set; }
 

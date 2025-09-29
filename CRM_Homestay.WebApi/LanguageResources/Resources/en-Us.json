@@ -123,5 +123,17 @@
   "Room": "Room",
   "Room:0001": "This room already exists",
   "Room:0002": "This room does not exist",
-  "Room:0003": "Cannot delete the room because there are pending reservations"
+  "Room:0003": "Cannot delete the room because there are pending reservations",
+
+  "ServiceItem": "Service Item",
+  "ServiceItem:0001": "Identifier, Brand, and Model are required for vehicle types",
+  "ServiceItem:0002": "This room type already exists",
+  "ServiceItem:0003": "This room type does not exist",
+  "ServiceItem:0004": "Cannot delete the service item because it is currently associated with an active booking",
+
+  "HomestayService": "Service",
+  "HomestayService:0001": "This service already exists",
+  "HomestayService:0002": "This service does not exist",
+  "HomestayService:0003": "Cannot delete the service because there are pending reservations",
+  "HomestayService:0004": "Cannot delete this service because it still has Service Items linked to it"
 }

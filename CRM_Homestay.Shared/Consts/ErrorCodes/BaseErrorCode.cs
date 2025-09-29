@@ -37,6 +37,8 @@ public class BaseErrorCode
     public const string Amenity = "Amenity";
     public const string RoomAmenity = "RoomAmenity";
     public const string Room = "Room";
+    public const string ServiceItem = "ServiceItem";
+    public const string HomestayService = "HomestayService";
     public const string UnexpectedError = "UNEXPECTED_ERROR";
 }
 
@@ -143,4 +145,20 @@ public class RoomErrorCode
     public const string AlreadyExists = "Room:0001";
     public const string NotFound = "Room:0002";
     public const string NotAllowedDelete = "Room:0003";
+}
+
+public class ServiceItemErrorCode
+{
+    public const string IdentifierBrandModelRequiredForVehicle = "ServiceItem:0001";
+    public const string AlreadyExists = "ServiceItem:0002";
+    public const string NotFound = "ServiceItem:0003";
+    public const string NotAllowedDelete = "ServiceItem:0004";
+}
+
+public class HomestayServiceErrorCode
+{
+    public const string AlreadyExists = "HomestayService:0001";
+    public const string NotFound = "HomestayService:0002";
+    public const string CannotDeleteActiveBooking = "HomestayService:0003";
+    public const string CannotDeleteHasItems = "HomestayService:0004";
 }

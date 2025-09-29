@@ -7,10 +7,10 @@ namespace CRM_Homestay.Entity.ServiceItems
 {
     public class ServiceItem : BaseEntity
     {
-        public Guid ServiceId { get; set; }
+        public Guid HomestayServiceId { get; set; }
         public string? Identifier { get; set; }
-        public string Brand { get; set; } = string.Empty; // Hãng xe (Honda, Yamaha)
-        public string Model { get; set; } = string.Empty; // Mẫu xe (Vision, Air Blade)
+        public string? Brand { get; set; } // Hãng xe (Honda, Yamaha)
+        public string? Model { get; set; } // Mẫu xe (Vision, Air Blade)
         public ServiceItemStatuses Status { get; set; } = ServiceItemStatuses.Available;
         public ServiceItemTypes Type { get; set; } = ServiceItemTypes.Others;
         public string? Description { get; set; }

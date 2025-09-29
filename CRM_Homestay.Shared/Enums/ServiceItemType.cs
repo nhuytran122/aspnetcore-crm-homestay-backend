@@ -4,6 +4,7 @@ namespace CRM_Homestay.Core.Enums;
 
 public enum ServiceItemTypes
 {
+    [Description("Khác")]
     Others = 0,
     [Description("Xe tay ga")]
     Scooter = 1,

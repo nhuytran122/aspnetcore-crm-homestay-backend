@@ -25,6 +25,10 @@ using CRM_Homestay.Entity.Rooms;
 using CRM_Homestay.Contract.Rooms;
 using CRM_Homestay.Entity.RoomAmenities;
 using CRM_Homestay.Contract.RoomAmenities;
+using CRM_Homestay.Contract.HomestayServices;
+using CRM_Homestay.Entity.HomestayServices;
+using CRM_Homestay.Entity.ServiceItems;
+using CRM_Homestay.Contract.ServiceItems;
 
 namespace CRM_Homestay.Service;
 
@@ -107,5 +111,17 @@ public class AutoMapperProfile : Profile
 
         CreateMap<CreateAmenityForRoomDto, RoomAmenity>();
         CreateMap<UpdateAmenityForRoomDto, RoomAmenity>();
+
+        CreateMap<CreateUpdateHomestayServiceDto, HomestayService>()
+            .ForMember(dest => dest.ServiceItems, opt => opt.Ignore());
+        CreateMap<HomestayService, HomestayServiceDto>();
+        CreateMap<HomestayService, HomestayServiceDetailDto>();
+
+        CreateMap<CreateServiceItemDto, ServiceItem>();
+        CreateMap<UpdateServiceItemDto, ServiceItem>()
+            .ForMember(dest => dest.HomestayServiceId, opt => opt.Ignore());
+        CreateMap<ServiceItem, ServiceItemDto>()
+            .ForMember(dest => dest.ServiceName,
+                opt => opt.MapFrom(src => src.HomestayService != null ? src.HomestayService.Name : null));
     }
 }

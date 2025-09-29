@@ -4,6 +4,7 @@ using CRM_Homestay.Core.Models;
 using CRM_Homestay.Database.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CRM_Homestay.App.Migrations
 {
     [DbContext(typeof(HomestayContext))]
-    partial class HomestayContextModelSnapshot : ModelSnapshot
+    [Migration("20250929035204_UpdateTblServiceIemAndHomestayService")]
+    partial class UpdateTblServiceIemAndHomestayService
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -7876,7 +7879,7 @@ namespace CRM_Homestay.App.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("HomestayServiceId")
+                    b.Property<Guid?>("HomestayServiceId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Identifier")
@@ -7893,6 +7896,9 @@ namespace CRM_Homestay.App.Migrations
 
                     b.Property<string>("NormalizeFullInfo")
                         .HasColumnType("text");
+
+                    b.Property<Guid>("ServiceId")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
@@ -8157,7 +8163,7 @@ namespace CRM_Homestay.App.Migrations
                             Id = new Guid("b480e58f-14a5-414c-b54b-89d168f833b2"),
                             AccessFailedCount = 0,
                             BaseSalary = 0L,
-                            ConcurrencyStamp = "55383b9c-2ac8-4fb8-b68c-2ea30e85562f",
+                            ConcurrencyStamp = "49c90969-dcf6-4c02-8a31-610477bafa56",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -8169,9 +8175,9 @@ namespace CRM_Homestay.App.Migrations
                             LockoutEnabled = false,
                             NormalizeFullInfo = "ADMIN NGUYEN",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAZccybxJPUfamegw1GpkV1j9HdOj5MDbsk4SRQ/EVCsgBFVjWp0CDA8zMwQmERO5Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPPe5YXUV1V/89h0Z5BLSKloz0+CXTdixotHCg5/M9iheqtJ6aOB8mjyqeJ8puWMRg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5b0dbf98-ac88-47f4-b549-ec77c5fb3ce5",
+                            SecurityStamp = "c5b44011-9965-4908-adce-4dad993e8f90",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -93463,9 +93469,7 @@ namespace CRM_Homestay.App.Migrations
                 {
                     b.HasOne("CRM_Homestay.Entity.HomestayServices.HomestayService", "HomestayService")
                         .WithMany("ServiceItems")
-                        .HasForeignKey("HomestayServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HomestayServiceId");
 
                     b.Navigation("HomestayService");
                 });
