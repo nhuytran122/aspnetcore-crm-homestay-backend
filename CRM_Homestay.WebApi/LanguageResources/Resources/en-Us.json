@@ -147,5 +147,13 @@
   "Coupon": "Coupon",
   "Coupon:0001": "The percentage value must be between {0} and {1}",
   "Coupon:0002": "Coupon does not exist",
-  "Coupon:0003": "Invalid Value"
+  "Coupon:0003": "Invalid Value",
+
+  "FAQ": "FAQ (Frequently Asked Questions)",
+  "FAQ:0001": "This FAQ (Frequently Asked Questions) already exists",
+  "FAQ:0002": "This FAQ (Frequently Asked Questions) does not exist",
+
+  "Rule": "Rule",
+  "Rule:0001": "This Rule already exists",
+  "Rule:0002": "This Rule does not exist"
 }

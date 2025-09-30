@@ -41,6 +41,8 @@ public class BaseErrorCode
     public const string HomestayService = "HomestayService";
     public const string CustomerGroup = "CustomerGroup";
     public const string Coupon = "Coupon";
+    public const string FAQ = "FAQ";
+    public const string Rule = "Rule";
     public const string UnexpectedError = "UNEXPECTED_ERROR";
 }
 
@@ -179,4 +181,16 @@ public class CouponErrorCode
     public const string PercentMustBeBetween = "Coupon:0001";
     public const string NotFound = "Coupon:0002";
     public const string InvalidValue = "Coupon:0003";
+}
+
+public class FAQErrorCode
+{
+    public const string AlreadyExists = "FAQ:0001";
+    public const string NotFound = "FAQ:0002";
+}
+
+public class RuleErrorCode
+{
+    public const string AlreadyExists = "Rule:0001";
+    public const string NotFound = "Rule:0002";
 }

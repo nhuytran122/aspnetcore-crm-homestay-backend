@@ -33,6 +33,10 @@ using CRM_Homestay.Entity.CustomerGroups;
 using CRM_Homestay.Contract.CustomerGroups;
 using CRM_Homestay.Entity.Customers;
 using CRM_Homestay.Contract.Customers;
+using CRM_Homestay.Entity.FAQs;
+using CRM_Homestay.Contract.FAQs;
+using CRM_Homestay.Contract.Rules;
+using CRM_Homestay.Entity.Rules;
 
 namespace CRM_Homestay.Service;
 
@@ -144,5 +148,11 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.NormalizedCompanyName,
                 opt => opt.MapFrom(src => src.CompanyName!.ToUpper()));
         CreateMap<CustomerWithNavigationProperties, CustomerWithNavigationPropertiesDto>();
+
+        CreateMap<FAQ, FAQDto>();
+        CreateMap<CreateUpdateFAQDto, FAQ>();
+
+        CreateMap<Rule, RuleDto>();
+        CreateMap<CreateUpdateRuleDto, Rule>();
     }
 }

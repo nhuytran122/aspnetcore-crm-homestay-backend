@@ -151,5 +151,13 @@
   "Coupon": "Mã giảm giá",
   "Coupon:0001": "Giá trị phần trăm phải từ {0} đến {1}",
   "Coupon:0002": "Mã giảm giá không tồn tại",
-  "Coupon:0003": "Giá trị đầu vào không hợp lệ."
+  "Coupon:0003": "Giá trị đầu vào không hợp lệ",
+
+  "FAQ": "Câu hỏi thường gặp (FAQ)",
+  "FAQ:0001": "Câu hỏi thường gặp (FAQ) này đã tồn tại",
+  "FAQ:0002": "Câu hỏi thường gặp (FAQ) này không tồn tại",
+
+  "Rule": "Quy tắc",
+  "Rule:0001": "Quy tắc này đã tồn tại",
+  "Rule:0002": "Quy tắc này không tồn tại"
 }
