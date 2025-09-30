@@ -135,5 +135,17 @@
   "HomestayService:0001": "This service already exists",
   "HomestayService:0002": "This service does not exist",
   "HomestayService:0003": "Cannot delete the service because there are pending reservations",
-  "HomestayService:0004": "Cannot delete this service because it still has Service Items linked to it"
+  "HomestayService:0004": "Cannot delete this service because it still has Service Items linked to it",
+
+  "CustomerGroup": "Customer Group",
+  "CustomerGroup:0001": "Do not delete.customers using this group",
+  "CustomerGroup:0002": "The customer group name already exists",
+  "CustomerGroup:0003": "The customer group code already exists",
+  "CustomerGroup:0004": "A customer group with the same minimum points already exists",
+  "CustomerGroup:0005": "This customer group does not exist",
+
+  "Coupon": "Coupon",
+  "Coupon:0001": "The percentage value must be between {0} and {1}",
+  "Coupon:0002": "Coupon does not exist",
+  "Coupon:0003": "Invalid Value"
 }

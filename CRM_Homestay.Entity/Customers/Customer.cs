@@ -5,7 +5,6 @@ using CRM_Homestay.Entity.Bases;
 using CRM_Homestay.Entity.Bookings;
 using CRM_Homestay.Entity.Coupons;
 using CRM_Homestay.Entity.CustomerGroups;
-using CRM_Homestay.Entity.Users;
 
 namespace CRM_Homestay.Entity.Customers;
 

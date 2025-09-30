@@ -10,8 +10,8 @@ public class CustomerGroup : BaseEntity
     public string NormalizedName { get; set; } = string.Empty;
     public string Code { get; set; } = string.Empty;
     public string NormalizedCode { get; set; } = string.Empty;
-    public DiscountTypes DiscountType { get; set; } = DiscountTypes.Percentage;
-    public decimal DiscountValue { get; set; } = 0;
+    public DiscountTypes? DiscountType { get; set; }
+    public decimal? DiscountValue { get; set; }
     public double MinPoints { get; set; } = 0;
     public string? Description { get; set; }
     public bool IsActive { get; set; } = true;

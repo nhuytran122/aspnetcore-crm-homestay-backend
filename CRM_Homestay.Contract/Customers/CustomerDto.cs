@@ -2,7 +2,6 @@
 using CRM_Homestay.Core.Enums;
 using CRM_Homestay.Core.Models;
 using CRM_Homestay.Entity.Customers;
-using CRM_Homestay.Entity.Users;
 
 namespace CRM_Homestay.Contract.Customers;
 

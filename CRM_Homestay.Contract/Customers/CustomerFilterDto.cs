@@ -7,8 +7,8 @@ public class CustomerFilterDto : FilterBase, IPagedResultRequest
 {
     public CustomerTypes? Type { get; set; }
     public Guid? GroupId { get; set; }
-    public int CurrentPage { get; set; }
-    public int PageSize { get; set; }
+    public int CurrentPage { get; set; } = 1;
+    public int PageSize { get; set; } = 20;
     public DateTime? LastVisitFrom { get; set; }
     public DateTime? LastVisitTo { get; set; }
 

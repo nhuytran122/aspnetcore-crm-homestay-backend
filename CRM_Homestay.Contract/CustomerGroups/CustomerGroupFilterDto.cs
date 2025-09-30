@@ -25,7 +25,6 @@ public class CustomerGroupFilterDto : IPagedResultRequest
             }
         }
     }
-
     public int CurrentPage { get; set; }
     public int PageSize { get; set; }
 }

@@ -139,5 +139,17 @@
   "HomestayService:0001": "Dịch vụ này đã tồn tại",
   "HomestayService:0002": "Dịch vụ này không tồn tại",
   "HomestayService:0003": "Không thể xóa dịch vụ vì đang có đơn đặt phòng chờ xử lý",
-  "HomestayService:0004": "Không thể xóa dịch vụ vì vẫn còn cơ sở vật chất thuộc về dịch vụ này."
+  "HomestayService:0004": "Không thể xóa dịch vụ vì vẫn còn cơ sở vật chất thuộc về dịch vụ này",
+
+  "CustomerGroup": "Nhóm khách hàng",
+  "CustomerGroup:0001": "Khách hàng đang sứ dụng nhóm này. Không thể xóa",
+  "CustomerGroup:0002": "Tên nhóm khách hàng đã tồn tại",
+  "CustomerGroup:0003": "Mã nhóm khách hàng đã tồn tại",
+  "CustomerGroup:0004": "Nhóm khách hàng với số điểm tối thiểu này đã tồn tại",
+  "CustomerGroup:0005": "Nhóm khách hàng này không tồn tại",
+
+  "Coupon": "Mã giảm giá",
+  "Coupon:0001": "Giá trị phần trăm phải từ {0} đến {1}",
+  "Coupon:0002": "Mã giảm giá không tồn tại",
+  "Coupon:0003": "Giá trị đầu vào không hợp lệ."
 }

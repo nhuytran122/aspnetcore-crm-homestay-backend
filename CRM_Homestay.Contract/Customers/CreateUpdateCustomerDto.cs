@@ -15,5 +15,5 @@ public class CreateUpdateCustomerDto
     public string? CompanyName { get; set; }
     public string? TaxCode { get; set; }
     public CreateUpdateAddressDto Address { get; set; } = new CreateUpdateAddressDto();
-    public Guid GroupId { get; set; }
+    public Guid? GroupId { get; set; }
 }

@@ -48,6 +48,10 @@ using CRM_Homestay.Contract.HomestayServices;
 using CRM_Homestay.Service.HomestayServices;
 using CRM_Homestay.Contract.ServiceItems;
 using CRM_Homestay.Service.ServiceItems;
+using CRM_Homestay.Contract.Customers;
+using CRM_Homestay.Contract.CustomerGroups;
+using CRM_Homestay.Service.Customers;
+using CRM_Homestay.Service.CustomerGroups;
 
 namespace CRM_Homestay.App.ServiceInstallers;
 
@@ -326,5 +330,8 @@ public static class Installers
         _services.AddScoped<IRoomService, RoomService>();
         _services.AddScoped<IHomestayServiceService, HomestayServiceService>();
         _services.AddScoped<IServiceItemService, ServiceItemService>();
+        _services.AddScoped<ICustomerService, CustomerService>();
+        _services.AddScoped<ICustomerGroupService, CustomerGroupService>();
+
     }
 }

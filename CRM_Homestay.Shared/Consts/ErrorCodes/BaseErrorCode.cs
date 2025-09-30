@@ -39,6 +39,8 @@ public class BaseErrorCode
     public const string Room = "Room";
     public const string ServiceItem = "ServiceItem";
     public const string HomestayService = "HomestayService";
+    public const string CustomerGroup = "CustomerGroup";
+    public const string Coupon = "Coupon";
     public const string UnexpectedError = "UNEXPECTED_ERROR";
 }
 
@@ -161,4 +163,20 @@ public class HomestayServiceErrorCode
     public const string NotFound = "HomestayService:0002";
     public const string CannotDeleteActiveBooking = "HomestayService:0003";
     public const string CannotDeleteHasItems = "HomestayService:0004";
+}
+
+public class CustomerGroupErrorCode
+{
+    public const string NotDelete = "CustomerGroup:0001";
+    public const string NameAlreadyExist = "CustomerGroup:0002";
+    public const string CodeAlreadyExist = "CustomerGroup:0003";
+    public const string MinPointsAlreadyExist = "CustomerGroup:0004";
+    public const string NotFound = "CustomerGroup:0005";
+}
+
+public class CouponErrorCode
+{
+    public const string PercentMustBeBetween = "Coupon:0001";
+    public const string NotFound = "Coupon:0002";
+    public const string InvalidValue = "Coupon:0003";
 }

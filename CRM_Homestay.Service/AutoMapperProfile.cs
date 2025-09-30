@@ -29,6 +29,10 @@ using CRM_Homestay.Contract.HomestayServices;
 using CRM_Homestay.Entity.HomestayServices;
 using CRM_Homestay.Entity.ServiceItems;
 using CRM_Homestay.Contract.ServiceItems;
+using CRM_Homestay.Entity.CustomerGroups;
+using CRM_Homestay.Contract.CustomerGroups;
+using CRM_Homestay.Entity.Customers;
+using CRM_Homestay.Contract.Customers;
 
 namespace CRM_Homestay.Service;
 
@@ -123,5 +127,22 @@ public class AutoMapperProfile : Profile
         CreateMap<ServiceItem, ServiceItemDto>()
             .ForMember(dest => dest.ServiceName,
                 opt => opt.MapFrom(src => src.HomestayService != null ? src.HomestayService.Name : null));
+
+        CreateMap<CustomerGroup, CustomerGroupDto>();
+
+        CreateMap<CreateUpdateCustomerGroupDto, CustomerGroup>()
+            .ForMember(dest => dest.NormalizedName,
+                opt => opt.MapFrom(src => src.Name!.ToUpper()))
+            .ForMember(dest => dest.NormalizedCode,
+                opt => opt.MapFrom(src => src.Code!.ToUpper()));
+
+        CreateMap<Customer, CustomerDto>().ForMember(dest => dest.FullName,
+            opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
+        CreateMap<CreateUpdateCustomerDto, Customer>()
+            .ForMember(dest => dest.NormalizedEmail,
+                opt => opt.MapFrom(src => src.Email!.ToUpper()))
+            .ForMember(dest => dest.NormalizedCompanyName,
+                opt => opt.MapFrom(src => src.CompanyName!.ToUpper()));
+        CreateMap<CustomerWithNavigationProperties, CustomerWithNavigationPropertiesDto>();
     }
 }
