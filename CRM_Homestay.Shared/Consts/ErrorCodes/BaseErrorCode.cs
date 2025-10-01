@@ -25,6 +25,7 @@ public class BaseErrorCode
     public const string DataExist = "Api:0022";
     public const string BucketNotExist = "Api:0023";
     public const string ObjectNotFound = "Api:0024";
+    public const string StartDateCannotBeInThePast = "Api:0025";
 
     public const string NotDelete = "Api:0013";
     public const string Duplicate = "Duplicate";
@@ -181,6 +182,11 @@ public class CouponErrorCode
     public const string PercentMustBeBetween = "Coupon:0001";
     public const string NotFound = "Coupon:0002";
     public const string InvalidValue = "Coupon:0003";
+    public const string CouponExhausted = "Coupon:0004";
+    public const string CouponExpired = "Coupon:0005";
+    public const string CouponAlreadyUsedByCustomer = "Coupon:0006";
+    public const string InvalidTotalUsageLimit = "Coupon:0007";
+
 }
 
 public class FAQErrorCode
@@ -193,4 +199,37 @@ public class RuleErrorCode
 {
     public const string AlreadyExists = "Rule:0001";
     public const string NotFound = "Rule:0002";
+}
+
+public class BookingErrorCode
+{
+    public const string NotUpdate = "Booking:0001";
+    public const string NotDelete = "Booking:0002";
+    public const string NotCancel = "Booking:0003";
+    public const string NoProducts = "Booking:0004";
+    public const string ReasonIsRequired = "Booking:0005";
+    public const string NoReturnStatusNew = "Booking:0006";
+    public const string PaymentIsRequired = "Booking:0007";
+    public const string PaymentImgIsRequired = "Booking:0008";
+    public const string NoComplete = "Booking:0009";
+    public const string FullyPaid = "Booking:0010";
+    public const string BookingPaymentAlreadyExist = "Booking:0011";
+    public const string DebtCannotSelect = "Booking:0012";
+    public const string NotFound = "Booking:0013";
+    public const string Cancelled = "Booking:0014";
+    public const string NoBookingSelected = "Booking:0015";
+    public const string OverPayment = "Booking:0017";
+    public const string PaymentTypeIsRequired = "Booking:0018";
+    public const string InvalidTotalQuantity = "Booking:0021";
+    public const string ReceivedByTheStaff = "Booking:0022";
+    public const string NotEnoughQuantity = "Booking:0023";
+    public const string MoneyMustGreaterThanZero = "Booking:0024";
+    public const string CannotUpdateWhenPaid = "Booking:0025";
+    public const string NotFoundCode = "ORDER_NOT_FOUND";
+    public const string ReasonIsRequiredCode = "REASON_IS_REQUIRED";
+    public const string NotCancelCode = "NOT_CANCEL";
+    public const string BookingAlreadyReviewed = "ORDER_ALREADY_REVIEWED";
+    public const string BookingNotReviewable = "ORDER_NOT_REVIEWABLE";
+    public const string InvalidBookingStatus = "INVALID_ORDER_STATUS";
+    public const string CannotUpdateCustomer = "Booking:0027";
 }

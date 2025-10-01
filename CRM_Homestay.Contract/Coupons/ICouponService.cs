@@ -13,5 +13,4 @@ public interface ICouponService
     public Task DeleteAsync(Guid id);
     public Task<ApplyCouponResultDto> ApplyCoupon(ApplyCouponRequestDto input);
     public Task<List<CouponDto>> GetAvailableCouponsForCustomerAsync(Guid customerId);
-    public Task CreateIncentiveCouponBasedOnBookingAsync(Guid customerId, string? description);
 }

@@ -14,13 +14,14 @@
 
   "Api:0016": "Tên {0} đã tồn tại",
   "Api:0017": "Mã {0} đã tồn tại",
-  "Api:0018": "Dữ liệu đã bị chỉnh sửa bởi người khác.vui lòng reload lại",
+  "Api:0018": "Dữ liệu đã bị chỉnh sửa bởi người khác. Vui lòng reload lại",
   "Api:0019": "Số tiền không hợp lệ",
   "Api:0020": "Yêu cầu không hợp lệ",
   "Api:0021": "Không tìm thấy file",
   "Api:0022": "Làm sạch dữ liệu các bảng cần thêm trước khi thêm dữ liệu",
   "Api:0023": "Bucket {0} không tồn tại",
   "Api:0024": "{0} không tồn tại",
+  "Api:0025": "Thời gian bắt đầu không được nhỏ hơn hiện tại",
 
   "User": "Người dùng",
 
@@ -152,6 +153,11 @@
   "Coupon:0001": "Giá trị phần trăm phải từ {0} đến {1}",
   "Coupon:0002": "Mã giảm giá không tồn tại",
   "Coupon:0003": "Giá trị đầu vào không hợp lệ",
+  "Coupon:0004": "Mã giảm giá đã hết lượt sử dụng",
+  "Coupon:0005": "Mã giảm giá đã hết hạn sử dụng",
+  "Coupon:0006": "Bạn đã sử dụng mã khuyến mãi này rồi",
+  "Coupon:0007": "Tổng số lượt sử dụng không được nhỏ hơn số lượt đã dùng",
+  
 
   "FAQ": "Câu hỏi thường gặp (FAQ)",
   "FAQ:0001": "Câu hỏi thường gặp (FAQ) này đã tồn tại",

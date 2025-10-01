@@ -6,4 +6,5 @@ public class ApplyCouponRequestDto
     public Guid? BookingId { get; set; }
     public decimal Total { get; set; }
     public string Code { get; set; } = "";
+    public bool IsFromCart { get; set; } = false;
 }

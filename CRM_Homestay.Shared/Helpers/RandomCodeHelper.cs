@@ -32,4 +32,12 @@ public static class RandomCodeHelper
             .Select(c => chars[random.Next(chars.Length)])
             .ToArray());
     }
+
+    public static string GenerateCouponCode(int length = 5)
+    {
+        var random = new Random();
+        return new string(Enumerable.Range(0, length)
+            .Select(c => chars[random.Next(chars.Length)])
+            .ToArray());
+    }
 }

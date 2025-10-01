@@ -56,6 +56,8 @@ using CRM_Homestay.Contract.FAQs;
 using CRM_Homestay.Service.FAQs;
 using CRM_Homestay.Contract.Rules;
 using CRM_Homestay.Service.Rules;
+using CRM_Homestay.Contract.Coupons;
+using CRM_Homestay.Service.Coupons;
 
 namespace CRM_Homestay.App.ServiceInstallers;
 
@@ -338,6 +340,7 @@ public static class Installers
         _services.AddScoped<ICustomerGroupService, CustomerGroupService>();
         _services.AddScoped<IFAQService, FAQService>();
         _services.AddScoped<IRuleService, RuleService>();
+        _services.AddScoped<ICouponService, CouponService>();
 
     }
 }

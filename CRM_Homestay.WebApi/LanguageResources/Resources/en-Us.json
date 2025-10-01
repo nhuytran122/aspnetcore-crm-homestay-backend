@@ -148,6 +148,10 @@
   "Coupon:0001": "The percentage value must be between {0} and {1}",
   "Coupon:0002": "Coupon does not exist",
   "Coupon:0003": "Invalid Value",
+  "Coupon:0004": "The coupon has been fully used",
+  "Coupon:0005": "The coupon has expired",
+  "Coupon:0006": "You have already used this coupon",
+  "Coupon:0007": "Total number of uses cannot be less than number of uses.",
 
   "FAQ": "FAQ (Frequently Asked Questions)",
   "FAQ:0001": "This FAQ (Frequently Asked Questions) already exists",

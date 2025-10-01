@@ -37,6 +37,8 @@ using CRM_Homestay.Entity.FAQs;
 using CRM_Homestay.Contract.FAQs;
 using CRM_Homestay.Contract.Rules;
 using CRM_Homestay.Entity.Rules;
+using CRM_Homestay.Entity.Coupons;
+using CRM_Homestay.Contract.Coupons;
 
 namespace CRM_Homestay.Service;
 
@@ -154,5 +156,9 @@ public class AutoMapperProfile : Profile
 
         CreateMap<Rule, RuleDto>();
         CreateMap<CreateUpdateRuleDto, Rule>();
+
+        CreateMap<Coupon, CouponDto>().ReverseMap();
+        CreateMap<CreateUpdateCouponDto, Coupon>().ReverseMap()
+            .ForMember(dest => dest.Id, opt => opt.Ignore()); ;
     }
 }
