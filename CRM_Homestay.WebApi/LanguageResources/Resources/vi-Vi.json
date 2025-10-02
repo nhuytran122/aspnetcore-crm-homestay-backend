@@ -157,7 +157,6 @@
   "Coupon:0005": "Mã giảm giá đã hết hạn sử dụng",
   "Coupon:0006": "Bạn đã sử dụng mã khuyến mãi này rồi",
   "Coupon:0007": "Tổng số lượt sử dụng không được nhỏ hơn số lượt đã dùng",
-  
 
   "FAQ": "Câu hỏi thường gặp (FAQ)",
   "FAQ:0001": "Câu hỏi thường gặp (FAQ) này đã tồn tại",
@@ -165,5 +164,40 @@
 
   "Rule": "Quy tắc",
   "Rule:0001": "Quy tắc này đã tồn tại",
-  "Rule:0002": "Quy tắc này không tồn tại"
+  "Rule:0002": "Quy tắc này không tồn tại",
+
+  "Booking": "Đơn đặt phòng",
+  "Booking:0001": "Không thể cập nhật đơn đặt phòng",
+  "Booking:0002": "Không thể xóa đơn đặt phòng",
+  "Booking:0003": "Không thể hủy đơn đặt phòng",
+  "Booking:0004": "Không thể trả về trạng thái Mới",
+  "Booking:0005": "Yêu cầu thanh toán",
+  "Booking:0006": "Yêu cầu hình ảnh thanh toán",
+  "Booking:0007": "Đơn đặt phòng chưa hoàn tất",
+  "Booking:0008": "Đơn đặt phòng đã được thanh toán đầy đủ",
+  "Booking:0009": "Thanh toán cho đơn đặt phòng đã tồn tại",
+  "Booking:0010": "Không thể chọn khi đang nợ",
+  "Booking:0011": "Không tìm thấy đơn đặt phòng",
+  "Booking:0012": "Đơn đặt phòng đã bị hủy",
+  "Booking:0013": "Chưa chọn đơn đặt phòng",
+  "Booking:0014": "Thanh toán vượt quá số tiền cần thiết",
+  "Booking:0015": "Loại thanh toán là bắt buộc",
+  "Booking:0016": "Tổng số lượng không hợp lệ",
+  "Booking:0017": "Đơn đặt phòng đã được nhân viên tiếp nhận",
+  "Booking:0018": "Phòng {0} đã có lịch từ {1} đến {2}",
+  "Booking:0019": "Số tiền phải lớn hơn 0",
+  "Booking:0020": "Không thể cập nhật khi đã thanh toán",
+  "Booking:0021": "Không tìm thấy mã đơn đặt phòng",
+  "Booking:0022": "Bạn đã đánh giá đơn đặt phòng này rồi",
+  "Booking:0023": "Đơn đặt phòng này không thể đánh giá",
+  "Booking:0024": "Trạng thái đơn đặt phòng không hợp lệ",
+  "Booking:0025": "Không thể cập nhật đơn đặt phòng",
+  "Booking:0026": "Phòng {0} chỉ cho phép tối đa {1} khách, nhưng bạn đã đặt {2} khác",
+
+  "SystemSetting": "Cấu hình hệ thống",
+  "SystemSetting:0001": "Cấu hình hệ thống này đã tồn tại",
+  "SystemSetting:0002": "Chưa cấu hình hệ thống cho {0}",
+
+  "OvernightStartTime": "Thời gian bắt đầu qua đêm",
+  "OvernightEndTime": "Thời gian kết thúc qua đêm"
 }

@@ -20,8 +20,7 @@ namespace CRM_Homestay.Entity.Bookings
         public BookingStatuses Status { get; set; } = BookingStatuses.Pending;
         public DateTime? DeletedAt { get; set; }
         public Guid? BookingParentId { get; set; }
-        [Column(TypeName = "json")]
-        public BookingPricingSnapshot? PricingSnapshot { get; set; }
+        
         [Column(TypeName = "json")]
         public DiscountData? DiscountData { get; set; }
         public Guid CustomerId { get; set; }

@@ -159,5 +159,40 @@
 
   "Rule": "Rule",
   "Rule:0001": "This Rule already exists",
-  "Rule:0002": "This Rule does not exist"
+  "Rule:0002": "This Rule does not exist",
+
+  "Booking": "Booking",
+  "Booking:0001": "Cannot update booking",
+  "Booking:0002": "Cannot delete booking",
+  "Booking:0003": "Cannot cancel booking",
+  "Booking:0004": "Cannot return to New status",
+  "Booking:0005": "Payment is required",
+  "Booking:0006": "Payment image is required",
+  "Booking:0007": "Booking is not completed",
+  "Booking:0008": "Booking has been fully paid",
+  "Booking:0009": "Booking payment already exists",
+  "Booking:0010": "Debt cannot be selected",
+  "Booking:0011": "Booking not found",
+  "Booking:0012": "Booking has been cancelled",
+  "Booking:0013": "No booking selected",
+  "Booking:0014": "Overpayment detected",
+  "Booking:0015": "Payment type is required",
+  "Booking:0016": "Invalid total quantity",
+  "Booking:0017": "Booking has been received by staff",
+  "Booking:0018": "Room {0} is already booked from {1} to {2}",
+  "Booking:0019": "Amount must be greater than zero",
+  "Booking:0020": "Cannot update when already paid",
+  "Booking:0021": "Booking code not found",
+  "Booking:0022": "You have already reviewed this booking",
+  "Booking:0023": "This booking cannot be reviewed",
+  "Booking:0024": "Invalid booking status",
+  "Booking:0025": "Cannot update booking",
+  "Booking:0026": "Room {0} allows up to {1} guests, but {2} were provided",
+
+  "SystemSetting": "System setting",
+  "SystemSetting:0001": "The system setting {0} was not found",
+  "SystemSetting:0002": "This system setting does not exist",
+
+  "OvernightStartTime": "Overnight Start Time",
+  "OvernightEndTime": "Overnight End Time"
 }

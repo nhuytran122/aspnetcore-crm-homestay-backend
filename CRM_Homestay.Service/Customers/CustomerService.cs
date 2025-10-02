@@ -42,7 +42,7 @@ public class CustomerService : BaseService, ICustomerService
             ? $" {NormalizeString.ConvertNormalizeString(input.Text)} "
             : string.Empty;
         var now = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Unspecified);
-        var query =  _unitOfWork.GenericRepository<Customer>()
+        var query = _unitOfWork.GenericRepository<Customer>()
             .GetQueryable()
             .Include(x => x.Group)
             .Include(x => x.Bookings)
@@ -202,7 +202,9 @@ public class CustomerService : BaseService, ICustomerService
                 .FirstOrDefaultAsync();
             if (group == null)
             {
-                throw new GlobalException(L[BaseErrorCode.NotFound], HttpStatusCode.BadRequest);
+                throw new GlobalException(code: CustomerGroupErrorCode.NotFound,
+                        message: L[CustomerGroupErrorCode.NotFound],
+                        statusCode: HttpStatusCode.BadRequest);
             }
             customer.GroupId = group.Id;
         }
@@ -264,7 +266,9 @@ public class CustomerService : BaseService, ICustomerService
         var customer = await customerRepo.GetAsync(x => x.Id == id);
         if (customer == null)
         {
-            throw new GlobalException(L[BaseErrorCode.NotFound], HttpStatusCode.BadRequest);
+            throw new GlobalException(code: CustomerErrorCode.NotFound,
+                        message: L[CustomerErrorCode.NotFound],
+                        statusCode: HttpStatusCode.BadRequest);
         }
 
         var customers = await customerRepo
@@ -307,7 +311,9 @@ public class CustomerService : BaseService, ICustomerService
                 .FirstOrDefaultAsync();
             if (group == null)
             {
-                throw new GlobalException(L[BaseErrorCode.NotFound], HttpStatusCode.BadRequest);
+                throw new GlobalException(code: CustomerGroupErrorCode.NotFound,
+                        message: L[CustomerGroupErrorCode.NotFound],
+                        statusCode: HttpStatusCode.BadRequest);
             }
             customer.GroupId = group.Id;
         }
@@ -366,14 +372,18 @@ public class CustomerService : BaseService, ICustomerService
         var customer = await repo.GetAsync(x => x.Id == id);
         if (customer == null)
         {
-            throw new GlobalException(L[BaseErrorCode.NotFound], HttpStatusCode.BadRequest);
+            throw new GlobalException(code: CustomerErrorCode.NotFound,
+                        message: L[CustomerErrorCode.NotFound],
+                        statusCode: HttpStatusCode.NotFound);
         }
 
         if (await _unitOfWork
             .GenericRepository<Booking>()
             .AnyAsync(x => x.CustomerId == id))
         {
-            throw new GlobalException(L[BaseErrorCode.NotDelete], HttpStatusCode.BadRequest);
+            throw new GlobalException(code: CustomerErrorCode.NotDelete,
+                        message: L[CustomerErrorCode.NotDelete],
+                        statusCode: HttpStatusCode.BadRequest);
         }
         else
         {
@@ -423,9 +433,8 @@ public class CustomerService : BaseService, ICustomerService
                 Id = x.Id,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
-                FullName = x.Type == CustomerTypes.Individual
-                            ? x.FirstName + " " + x.LastName
-                            : x.CompanyName,
+                
+                
                 DOB = x.DOB,
                 Email = x.Email,
                 PhoneNumber = x.PhoneNumber,

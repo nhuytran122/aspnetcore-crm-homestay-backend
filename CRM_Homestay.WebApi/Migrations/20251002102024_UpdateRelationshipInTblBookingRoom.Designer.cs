@@ -4,6 +4,7 @@ using CRM_Homestay.Core.Models;
 using CRM_Homestay.Database.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CRM_Homestay.App.Migrations
 {
     [DbContext(typeof(HomestayContext))]
-    partial class HomestayContextModelSnapshot : ModelSnapshot
+    [Migration("20251002102024_UpdateRelationshipInTblBookingRoom")]
+    partial class UpdateRelationshipInTblBookingRoom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -210,9 +213,6 @@ namespace CRM_Homestay.App.Migrations
                     b.Property<Guid?>("LastModifierId")
                         .HasColumnType("uuid");
 
-                    b.Property<BookingPricingSnapshot>("PricingSnapshot")
-                        .HasColumnType("json");
-
                     b.Property<Guid>("RoomId")
                         .HasColumnType("uuid");
 
@@ -365,6 +365,9 @@ namespace CRM_Homestay.App.Migrations
 
                     b.Property<decimal>("PaidAmount")
                         .HasColumnType("numeric");
+
+                    b.Property<BookingPricingSnapshot>("PricingSnapshot")
+                        .HasColumnType("json");
 
                     b.Property<Guid?>("RoomId")
                         .HasColumnType("uuid");
@@ -7952,7 +7955,7 @@ namespace CRM_Homestay.App.Migrations
                             Id = new Guid("d10dac54-b88e-4105-940b-34ad1b2bf4fd"),
                             ConfigKey = "CleaningMinutes",
                             ConfigValue = "60",
-                            CreationTime = new DateTime(2025, 10, 2, 10, 54, 4, 439, DateTimeKind.Unspecified).AddTicks(3912),
+                            CreationTime = new DateTime(2025, 10, 2, 10, 20, 19, 851, DateTimeKind.Unspecified).AddTicks(9113),
                             Description = "Thời gian (phút) dọn dẹp phòng",
                             Sort = 0,
                             SystemName = "RoomUsage"
@@ -7962,7 +7965,7 @@ namespace CRM_Homestay.App.Migrations
                             Id = new Guid("a34726e0-fe3f-442e-a337-48ae997becf0"),
                             ConfigKey = "OvernightStartTime",
                             ConfigValue = "22:00:00",
-                            CreationTime = new DateTime(2025, 10, 2, 10, 54, 4, 439, DateTimeKind.Unspecified).AddTicks(3964),
+                            CreationTime = new DateTime(2025, 10, 2, 10, 20, 19, 851, DateTimeKind.Unspecified).AddTicks(9144),
                             Description = "Thời gian bắt đầu tính giá qua đêm (giờ check-in được tính là giá qua đêm nếu >= thời gian này)",
                             Sort = 0,
                             SystemName = "RoomPricing"
@@ -7972,7 +7975,7 @@ namespace CRM_Homestay.App.Migrations
                             Id = new Guid("b21c690b-4042-4407-9d78-e693fbf7ae46"),
                             ConfigKey = "OvernightEndTime",
                             ConfigValue = "08:00:00",
-                            CreationTime = new DateTime(2025, 10, 2, 10, 54, 4, 439, DateTimeKind.Unspecified).AddTicks(3969),
+                            CreationTime = new DateTime(2025, 10, 2, 10, 20, 19, 851, DateTimeKind.Unspecified).AddTicks(9147),
                             Description = "Thời gian kết thúc tính giá qua đêm (giờ check-out được tính là giá qua đêm nếu <= thời gian này)",
                             Sort = 0,
                             SystemName = "RoomPricing"
@@ -7982,7 +7985,7 @@ namespace CRM_Homestay.App.Migrations
                             Id = new Guid("1977ace4-af1b-4344-8ec8-8e7c43a3ca2b"),
                             ConfigKey = "DiscountType",
                             ConfigValue = "2",
-                            CreationTime = new DateTime(2025, 10, 2, 10, 54, 4, 439, DateTimeKind.Unspecified).AddTicks(3971),
+                            CreationTime = new DateTime(2025, 10, 2, 10, 20, 19, 851, DateTimeKind.Unspecified).AddTicks(9150),
                             Sort = 0,
                             SystemName = "IncentiveCoupon"
                         },
@@ -7991,7 +7994,7 @@ namespace CRM_Homestay.App.Migrations
                             Id = new Guid("a5511daa-0ef1-40c7-82bc-ca05ac3dc89a"),
                             ConfigKey = "DiscountValue",
                             ConfigValue = "10000",
-                            CreationTime = new DateTime(2025, 10, 2, 10, 54, 4, 439, DateTimeKind.Unspecified).AddTicks(3973),
+                            CreationTime = new DateTime(2025, 10, 2, 10, 20, 19, 851, DateTimeKind.Unspecified).AddTicks(9152),
                             Sort = 0,
                             SystemName = "IncentiveCoupon"
                         });
@@ -8206,7 +8209,7 @@ namespace CRM_Homestay.App.Migrations
                             Id = new Guid("b480e58f-14a5-414c-b54b-89d168f833b2"),
                             AccessFailedCount = 0,
                             BaseSalary = 0L,
-                            ConcurrencyStamp = "3ce6c1e2-7d86-4ec2-98e7-65b6dda69d69",
+                            ConcurrencyStamp = "ac70fabb-8e6f-4a20-8df6-2b630186a2b5",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -8218,9 +8221,9 @@ namespace CRM_Homestay.App.Migrations
                             LockoutEnabled = false,
                             NormalizeFullInfo = "ADMIN NGUYEN",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDlUyIlJJGyIsrm5hvW5rezBHTtWzUpMtb7o6EH158NmGyJoASqodwg4GMo7GES1UA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECx3pjNN8lutx/7LHjROLI5ms8qvf5J3xFCAtYpgZolMs2Th1XudLDz8++u491M6HA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "157525ff-75d3-4636-9c6e-5d234ad9343b",
+                            SecurityStamp = "f96fa495-c875-4e96-97a3-e3cdf6634635",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });

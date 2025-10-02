@@ -39,6 +39,12 @@ using CRM_Homestay.Contract.Rules;
 using CRM_Homestay.Entity.Rules;
 using CRM_Homestay.Entity.Coupons;
 using CRM_Homestay.Contract.Coupons;
+using CRM_Homestay.Entity.RoomUsages;
+using CRM_Homestay.Contract.RoomUsages;
+using CRM_Homestay.Entity.Bookings;
+using CRM_Homestay.Contract.Bookings;
+using CRM_Homestay.Core.Enums;
+using CRM_Homestay.Entity.BookingRooms;
 
 namespace CRM_Homestay.Service;
 
@@ -160,5 +166,29 @@ public class AutoMapperProfile : Profile
         CreateMap<Coupon, CouponDto>().ReverseMap();
         CreateMap<CreateUpdateCouponDto, Coupon>().ReverseMap()
             .ForMember(dest => dest.Id, opt => opt.Ignore()); ;
+
+        CreateMap<RoomUsage, RoomUsageDto>()
+            .ForMember(dest => dest.RoomNumber, opt => opt.MapFrom(src => src.Room!.RoomNumber));
+        CreateMap<BookingRoom, BookingRoomDto>()
+            .ForMember(dest => dest.RoomId, opt => opt.MapFrom(src => src.RoomId))
+            .ForMember(dest => dest.RoomNumber, opt => opt.MapFrom(src => src.Room!.RoomNumber))
+            .ForMember(dest => dest.RoomTypeId, opt => opt.MapFrom(src => src.Room!.RoomType != null ? src.Room.RoomType.Id : Guid.Empty))
+            .ForMember(dest => dest.RoomTypeName, opt => opt.MapFrom(src => src.Room!.RoomType != null ? src.Room.RoomType.Name : string.Empty))
+            .ForMember(dest => dest.GuestCounts, opt => opt.MapFrom(src => src.GuestCounts));
+
+        CreateMap<Booking, BookingDto>()
+            .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer != null ? src.Customer.Id : Guid.Empty))
+            .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src =>
+                src.Customer != null
+                    ? (src.Customer.Type == CustomerTypes.Individual
+                        ? $"{src.Customer.FirstName ?? string.Empty} {src.Customer.LastName ?? string.Empty}".Trim()
+                        : src.Customer.CompanyName ?? string.Empty)
+                    : string.Empty
+            ))
+            .ForMember(dest => dest.Rooms, opt => opt.MapFrom(src => src.BookingRooms));
+
+        CreateMap<CreateBookingDto, Booking>();
+        CreateMap<RoomPricing, BookingPricingSnapshot>();
+
     }
 }

@@ -459,6 +459,48 @@ public class HomestayContext : IdentityDbContext<User, Role, Guid, UserClaim, Us
             builder.Entity<Province>().HasData(provinces);
             builder.Entity<District>().HasData(districts);
             builder.Entity<Ward>().HasData(wards);
+
+            builder.Entity<SystemSetting>()
+            .HasData(
+                new SystemSetting
+                {
+                    Id = Guid.Parse("d10dac54-b88e-4105-940b-34ad1b2bf4fd"),
+                    SystemName = ConfigKey.RoomUsage,
+                    ConfigKey = ConfigKey.CleaningMinutes,
+                    ConfigValue = "60",
+                    Description = "Thời gian (phút) dọn dẹp phòng"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("a34726e0-fe3f-442e-a337-48ae997becf0"),
+                    SystemName = ConfigKey.RoomPricing,
+                    ConfigKey = ConfigKey.OvernightStartTime,
+                    ConfigValue = "22:00:00",
+                    Description = "Thời gian bắt đầu tính giá qua đêm (giờ check-in được tính là giá qua đêm nếu >= thời gian này)"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("b21c690b-4042-4407-9d78-e693fbf7ae46"),
+                    SystemName = ConfigKey.RoomPricing,
+                    ConfigKey = ConfigKey.OvernightEndTime,
+                    ConfigValue = "08:00:00",
+                    Description = "Thời gian kết thúc tính giá qua đêm (giờ check-out được tính là giá qua đêm nếu <= thời gian này)"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("1977ace4-af1b-4344-8ec8-8e7c43a3ca2b"),
+                    SystemName = ConfigKey.IncentiveCoupon,
+                    ConfigKey = ConfigKey.DiscountType,
+                    ConfigValue = "2"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("a5511daa-0ef1-40c7-82bc-ca05ac3dc89a"),
+                    SystemName = ConfigKey.IncentiveCoupon,
+                    ConfigKey = ConfigKey.DiscountValue,
+                    ConfigValue = "10000"
+                }
+            );
         }
 
     }

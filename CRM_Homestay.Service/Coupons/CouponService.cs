@@ -275,7 +275,9 @@ public class CouponService : BaseService, ICouponService
                 .Where(x => x.SystemName == ConfigKey.IncentiveCoupon && x.ConfigKey == ConfigKey.DiscountType)
                 .FirstOrDefaultAsync();
         if (configDiscountType == null)
-            throw new GlobalException("Chưa cấu hình loại giảm giá cho mã giảm giá", HttpStatusCode.NotFound);
+            throw new GlobalException(code: SystemSettingErrorCode.NotFound,
+                            message: L[SystemSettingErrorCode.NotFound],
+                            statusCode: HttpStatusCode.BadRequest);
         var discountType = Enum.Parse<DiscountTypes>(configDiscountType.ConfigValue);
 
         var configDiscountValue = await configSettingRepo.GetQueryable().AsNoTracking()

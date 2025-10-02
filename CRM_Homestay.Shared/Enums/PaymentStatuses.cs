@@ -5,5 +5,7 @@ public enum PaymentStatuses
     Failed = -1,
     Pending = 0,
     PartialPayment = 1,
-    FullyPaid = 10
+    FullyPaid = 10,
+    PendingRefund = -10,
+    Refunded = -20
 }
