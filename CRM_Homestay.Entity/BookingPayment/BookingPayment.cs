@@ -1,4 +1,5 @@
 using CRM_Homestay.Core.Enums;
+using CRM_Homestay.Core.Models;
 using CRM_Homestay.Entity.Bases;
 using CRM_Homestay.Entity.BookingPaymentDetails;
 using CRM_Homestay.Entity.Bookings;
@@ -6,7 +7,7 @@ using CRM_Homestay.Entity.Users;
 
 namespace CRM_Homestay.Entity.BookingPayments
 {
-    public class BookingPayment : BaseEntity
+    public class BookingPayment : BaseEntity, IAuditable
     {
         public Guid BookingId { get; set; }
         public PaymentStatuses PaymentStatus { get; set; } = PaymentStatuses.Pending;

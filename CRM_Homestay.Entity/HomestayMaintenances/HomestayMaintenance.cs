@@ -1,10 +1,11 @@
 using CRM_Homestay.Core.Enums;
+using CRM_Homestay.Core.Models;
 using CRM_Homestay.Entity.Bases;
 using CRM_Homestay.Entity.Branches;
 
 namespace CRM_Homestay.Entity.HomestayMaintenances
 {
-    public class HomestayMaintenance : BaseEntity
+    public class HomestayMaintenance : BaseEntity, IAuditable
     {
         public Guid BranchId { get; set; }
         public DateTime StartAt { get; set; }

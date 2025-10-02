@@ -65,6 +65,8 @@
   "Validator.GreaterThan": "Value must be greater than or equal to {0}",
   "Validator.EndDateMustBeAfterStartDate": "End date must be after start date",
   "Validator.EnumInvalid": "Invalid type",
+  "Validator.StartDateMustBeInFuture": "Start date must be in the future",
+  "Validator.EndDateMustBeInFuture": "End date must be in the future",
 
   "Duplicate": "Duplicate {0}",
   "ZeroQuantity": "Cannot set quantity to 0, please delete instead",
@@ -186,8 +188,9 @@
   "Booking:0022": "You have already reviewed this booking",
   "Booking:0023": "This booking cannot be reviewed",
   "Booking:0024": "Invalid booking status",
-  "Booking:0025": "Cannot update booking",
+  "Booking:0025": "Booking cannot be updated because it is currently {0}",
   "Booking:0026": "Room {0} allows up to {1} guests, but {2} were provided",
+  "Booking:0027": "The customer already has a pending booking. Please complete or cancel it before creating a new one",
 
   "SystemSetting": "System setting",
   "SystemSetting:0001": "The system setting {0} was not found",

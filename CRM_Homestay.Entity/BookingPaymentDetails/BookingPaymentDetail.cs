@@ -1,10 +1,11 @@
 using CRM_Homestay.Core.Enums;
+using CRM_Homestay.Core.Models;
 using CRM_Homestay.Entity.BookingPayments;
 using CRM_Homestay.Entity.BookingServices;
 
 namespace CRM_Homestay.Entity.BookingPaymentDetails
 {
-    public class BookingPaymentDetail
+    public class BookingPaymentDetail : IAuditable
     {
         public Guid Id { get; set; }
         public Guid BookingPaymentId { get; set; }

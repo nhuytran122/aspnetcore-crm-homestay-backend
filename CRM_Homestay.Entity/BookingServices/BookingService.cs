@@ -1,4 +1,5 @@
 using CRM_Homestay.Core.Enums;
+using CRM_Homestay.Core.Models;
 using CRM_Homestay.Entity.Bases;
 using CRM_Homestay.Entity.BookingPaymentDetails;
 using CRM_Homestay.Entity.BookingRooms;
@@ -9,7 +10,7 @@ using CRM_Homestay.Entity.Users;
 
 namespace CRM_Homestay.Entity.BookingServices
 {
-    public class BookingService : BaseEntity
+    public class BookingService : BaseEntity, IAuditable
     {
         public double Quantity { get; set; }
         public string? Description { get; set; }

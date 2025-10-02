@@ -24,6 +24,7 @@ using CRM_Homestay.Database.Helper;
 using System.Linq.Dynamic.Core;
 using CRM_Homestay.Contract.Reviews;
 using CRM_Homestay.Contract.SystemSettings;
+using CRM_Homestay.Core.Extensions;
 
 namespace CRM_Homestay.Service.Amenities
 {
@@ -41,187 +42,30 @@ namespace CRM_Homestay.Service.Amenities
         #region Create Booking
         public async Task<BookingDto> CreateAsync(CreateBookingDto input)
         {
-            var customer = await _unitOfWork.GenericRepository<Customer>()
-                .GetQueryable()
-                .Include(x => x.Group!)
-                .FirstOrDefaultAsync(x => x.Id == input.CustomerId);
-
-            if (customer == null)
+            var customer = await GetCustomerAsync(input.CustomerId);
+            var hasPendingBooking = await _unitOfWork.GenericRepository<Booking>().AnyAsync(
+                                        b => b.CustomerId == input.CustomerId && b.Status == BookingStatuses.Pending
+                                    );
+            if (hasPendingBooking)
             {
                 throw new GlobalException(
-                    code: CustomerErrorCode.NotFound,
-                    message: L[CustomerErrorCode.NotFound],
-                    statusCode: HttpStatusCode.NotFound
+                    code: BookingErrorCode.PendingBookingExists,
+                    message: L[BookingErrorCode.PendingBookingExists],
+                    statusCode: HttpStatusCode.BadRequest
                 );
             }
-            // validate room
-            foreach (var br in input.BookingRooms)
-            {
-                var roomIds = input.BookingRooms.Select(a => a.RoomId).ToList();
 
-                var existingRooms = await _unitOfWork.GenericRepository<Room>()
-                    .GetQueryable()
-                    .Where(x => roomIds.Contains(x.Id))
-                    .Select(x => new { x.Id, x.RoomTypeId })
-                    .ToListAsync();
+            await ValidateBookingRoomsAsync(input);
 
-                var invalidRoomIds = roomIds
-                    .Where(id => id.HasValue)
-                    .Select(id => id!.Value)
-                    .Except(existingRooms.Select(r => r.Id))
-                    .ToList();
-
-                if (invalidRoomIds.Any())
-                {
-                    throw new GlobalException(
-                        code: RoomErrorCode.NotFound,
-                        message: L[RoomErrorCode.NotFound],
-                        statusCode: HttpStatusCode.BadRequest
-                    );
-                }
-                var conflicts = await GetOverlappingUsagesAsync(
-                    br.RoomId!.Value,
-                    input.CheckIn,
-                    input.CheckOut
-                );
-
-                if (conflicts.Any())
-                {
-                    var firstConflict = conflicts.First();
-
-                    throw new GlobalException(
-                        code: BookingErrorCode.RoomUnavailable,
-                        message: string.Format(
-                            L[BookingErrorCode.RoomUnavailable],
-                            string.Join(", ", conflicts.Select(c => c.RoomNumber)),
-                            firstConflict.StartAt.ToString("dd/MM/yyyy HH:mm"),
-                            firstConflict.EndAt.ToString("dd/MM/yyyy HH:mm")
-                        ),
-                        statusCode: HttpStatusCode.BadRequest
-                    );
-                }
-
-                var room = await _unitOfWork.GenericRepository<Room>()
-                    .GetQueryable()
-                    .Include(r => r.RoomType)
-                    .FirstOrDefaultAsync(r => r.Id == br.RoomId);
-
-                if (room?.RoomType == null)
-                {
-                    throw new GlobalException(
-                        code: RoomErrorCode.NotFound,
-                        message: L[RoomErrorCode.NotFound],
-                        statusCode: HttpStatusCode.BadRequest
-                    );
-                }
-
-                var guestCount = br.GuestCounts ?? 1;
-                if (guestCount > room.RoomType.MaxGuests)
-                {
-                    throw new GlobalException(
-                        code: BookingErrorCode.ExceedMaxGuests,
-                        message: L[BookingErrorCode.ExceedMaxGuests, room.RoomNumber, room.RoomType.MaxGuests, guestCount],
-                        statusCode: HttpStatusCode.BadRequest
-                    );
-                }
-            }
             using (_unitOfWork.BeginTransaction())
+            {
                 try
                 {
-                    var checkIn = input.CheckIn;
-                    var checkOut = input.CheckOut;
-                    var booking = new Booking
-                    {
-                        CheckIn = checkIn,
-                        CheckOut = checkOut,
-                        CustomerId = input.CustomerId,
-                        TotalGuests = input.BookingRooms.Sum(br => br.GuestCounts) ?? 1,
-                        BookingParentId = input.BookingParentId,
-                    };
+                    var booking = await CreateBookingEntityAsync(input);
 
-                    booking.BookingRooms = input.BookingRooms.Select(br => new BookingRoom
-                    {
-                        RoomId = br.RoomId!.Value,
-                        GuestCounts = br.GuestCounts ?? 1,
-                        BookingId = booking.Id
-                    }).ToList();
+                    await AddRoomUsagesAndPricingAsync(booking, input.CheckIn, input.CheckOut);
 
-                    await _unitOfWork.GenericRepository<Booking>().AddAsync(booking);
-
-                    // create RoomUsage
-                    var cleaningMinutes = await _systemSettingService.GetCleaningMinutesAsync();
-                    var roomUsages = new List<RoomUsage>();
-
-                    // tính original price
-                    decimal totalPrice = 0;
-                    foreach (var br in booking.BookingRooms)
-                    {
-                        var bookingRoomId = br.Id;
-                        var roomId = br.RoomId;
-                        var usage = new RoomUsage
-                        {
-                            RoomId = roomId,
-                            BookingRoomId = bookingRoomId,
-                            StartAt = checkIn,
-                            EndAt = checkOut,
-                            Status = RoomStatuses.Booked
-                        };
-                        roomUsages.Add(usage);
-
-                        var cleaningUsage = new RoomUsage
-                        {
-                            RoomId = roomId,
-                            BookingRoomId = bookingRoomId,
-                            StartAt = checkOut,
-                            EndAt = checkOut.AddMinutes(cleaningMinutes),
-                            Status = RoomStatuses.Cleaning
-                        };
-                        roomUsages.Add(cleaningUsage);
-
-                        var room = await _unitOfWork.GenericRepository<Room>().GetAsync(x => x.Id == roomId);
-                        if (room != null)
-                        {
-                            var priceDto = await GetRoomPriceDetailAsync(room.RoomTypeId, checkIn, checkOut);
-                            var pricingSnapshot = priceDto.PricingSnapshot;
-                            totalPrice += priceDto.BaseTotalPrice;
-
-                            br.PricingSnapshot = pricingSnapshot;
-                        }
-                    }
-                    await _unitOfWork.GenericRepository<RoomUsage>().AddRangeAsync(roomUsages);
-
-                    // tạo discountData từ group
-                    var discountData = new DiscountData
-                    {
-                        MembershipDiscountType = customer.Group?.DiscountType,
-                        MembershipDiscountValue = customer.Group?.DiscountValue ?? 0,
-                        OriginalPrice = totalPrice
-                    };
-
-                    // áp dụng coupon nếu có
-                    if (!string.IsNullOrWhiteSpace(input.CouponCode))
-                    {
-                        var couponResult = await _couponService.ApplyCoupon(new ApplyCouponRequestDto
-                        {
-                            Total = totalPrice - discountData.MembershipDiscountValue, // trừ membership trước
-                            Code = input.CouponCode,
-                            CustomerId = input.CustomerId,
-                            BookingId = booking.Id,
-                            IsFromCart = false
-                        });
-
-                        discountData.VoucherCode = couponResult.CouponCode;
-                        discountData.VoucherType = couponResult.DiscountType;
-                        discountData.VoucherValue = couponResult.DiscountValue;
-
-                        booking.TotalPrice = couponResult.SubTotal;
-                    }
-                    else
-                    {
-                        var afterMembership = totalPrice - discountData.MembershipDiscountValue;
-                        booking.TotalPrice = afterMembership >= 0 ? afterMembership : 0;
-                    }
-                    booking.DiscountData = discountData;
+                    await ApplyDiscountAndCouponAsync(booking, customer, input.CouponCode);
 
                     await _unitOfWork.SaveChangeAsync();
                     _unitOfWork.Commit();
@@ -237,15 +81,172 @@ namespace CRM_Homestay.Service.Amenities
                         statusCode: HttpStatusCode.BadRequest
                     );
                 }
+            }
         }
         #endregion
+        private async Task<Booking> CreateBookingEntityAsync(CreateBookingDto input)
+        {
+            var booking = new Booking
+            {
+                CheckIn = input.CheckIn,
+                CheckOut = input.CheckOut,
+                CustomerId = input.CustomerId,
+                TotalGuests = input.BookingRooms.Sum(br => br.GuestCounts) ?? 1,
+                BookingParentId = input.BookingParentId,
+            };
+
+            booking.BookingRooms = input.BookingRooms.Select(br => new BookingRoom
+            {
+                RoomId = br.RoomId!.Value,
+                GuestCounts = br.GuestCounts ?? 1,
+                BookingId = booking.Id
+            }).ToList();
+
+            await _unitOfWork.GenericRepository<Booking>().AddAsync(booking);
+            return booking;
+        }
+
+        private async Task AddRoomUsagesAndPricingAsync(Booking booking, DateTime checkIn, DateTime checkOut)
+        {
+            var cleaningMinutes = await _systemSettingService.GetCleaningMinutesAsync();
+            var roomUsages = new List<RoomUsage>();
+            decimal totalPrice = 0;
+            var bookingRooms = booking.BookingRooms;
+            if (bookingRooms != null && bookingRooms.Any())
+            {
+                foreach (var br in bookingRooms)
+                {
+                    var usage = new RoomUsage
+                    {
+                        RoomId = br.RoomId,
+                        BookingRoomId = br.Id,
+                        StartAt = checkIn,
+                        EndAt = checkOut,
+                        Status = RoomStatuses.Booked
+                    };
+                    roomUsages.Add(usage);
+
+                    var cleaningUsage = new RoomUsage
+                    {
+                        RoomId = br.RoomId,
+                        BookingRoomId = br.Id,
+                        StartAt = checkOut,
+                        EndAt = checkOut.AddMinutes(cleaningMinutes),
+                        Status = RoomStatuses.Cleaning
+                    };
+                    roomUsages.Add(cleaningUsage);
+
+                    var room = await _unitOfWork.GenericRepository<Room>().GetAsync(x => x.Id == br.RoomId);
+                    if (room != null)
+                    {
+                        var priceDto = await GetRoomPriceDetailAsync(room.RoomTypeId, checkIn, checkOut);
+                        br.PricingSnapshot = priceDto.PricingSnapshot;
+                        totalPrice += priceDto.BaseTotalPrice;
+                    }
+                }
+            }
+            booking.TotalPrice = totalPrice;
+            await _unitOfWork.GenericRepository<RoomUsage>().AddRangeAsync(roomUsages);
+        }
+
+        private async Task ApplyDiscountAndCouponAsync(Booking booking, Customer customer, string? couponCode)
+        {
+            var discountData = new DiscountData
+            {
+                MembershipDiscountType = customer.Group?.DiscountType,
+                MembershipDiscountValue = customer.Group?.DiscountValue ?? 0,
+                OriginalPrice = booking.TotalPrice
+            };
+
+            if (!string.IsNullOrWhiteSpace(couponCode))
+            {
+                var couponResult = await _couponService.ApplyCoupon(new ApplyCouponRequestDto
+                {
+                    Total = booking.TotalPrice - discountData.MembershipDiscountValue,
+                    Code = couponCode,
+                    CustomerId = booking.CustomerId,
+                    BookingId = booking.Id,
+                    IsFromCart = false
+                });
+
+                discountData.VoucherCode = couponResult.CouponCode;
+                discountData.VoucherType = couponResult.DiscountType;
+                discountData.VoucherValue = couponResult.DiscountValue;
+
+                booking.TotalPrice = couponResult.SubTotal;
+            }
+            else
+            {
+                var afterMembership = booking.TotalPrice - discountData.MembershipDiscountValue;
+                booking.TotalPrice = afterMembership >= 0 ? afterMembership : 0;
+            }
+            booking.DiscountData = discountData;
+        }
+
+        private async Task ValidateBookingRoomsAsync(CreateBookingDto input)
+        {
+            var roomIds = input.BookingRooms.Select(a => a.RoomId).Where(id => id.HasValue).Select(id => id!.Value).ToList();
+
+            var existingRooms = await _unitOfWork.GenericRepository<Room>()
+                .GetQueryable()
+                .Where(x => roomIds.Contains(x.Id))
+                .Select(x => new { x.Id, x.RoomTypeId })
+                .ToListAsync();
+
+            var invalidRoomIds = roomIds.Except(existingRooms.Select(r => r.Id)).ToList();
+            if (invalidRoomIds.Any())
+            {
+                throw new GlobalException(RoomErrorCode.NotFound, L[RoomErrorCode.NotFound], HttpStatusCode.BadRequest);
+            }
+
+            foreach (var br in input.BookingRooms)
+            {
+                if (!br.RoomId.HasValue) continue;
+
+                var conflicts = await GetOverlappingUsagesAsync(br.RoomId.Value, input.CheckIn, input.CheckOut);
+                if (conflicts.Any())
+                {
+                    var firstConflict = conflicts.First();
+                    throw new GlobalException(
+                        BookingErrorCode.RoomUnavailable,
+                        string.Format(
+                            L[BookingErrorCode.RoomUnavailable],
+                            string.Join(", ", conflicts.Select(c => c.RoomNumber)),
+                            firstConflict.StartAt.ToString("dd/MM/yyyy HH:mm"),
+                            firstConflict.EndAt.ToString("dd/MM/yyyy HH:mm")
+                        ),
+                        HttpStatusCode.BadRequest
+                    );
+                }
+
+                var room = await _unitOfWork.GenericRepository<Room>()
+                    .GetQueryable()
+                    .Include(r => r.RoomType)
+                    .FirstOrDefaultAsync(r => r.Id == br.RoomId);
+
+                if (room?.RoomType == null)
+                {
+                    throw new GlobalException(RoomErrorCode.NotFound, L[RoomErrorCode.NotFound], HttpStatusCode.BadRequest);
+                }
+
+                var guestCount = br.GuestCounts ?? 1;
+                if (guestCount > room.RoomType.MaxGuests)
+                {
+                    throw new GlobalException(
+                        BookingErrorCode.ExceedMaxGuests,
+                        L[BookingErrorCode.ExceedMaxGuests, room.RoomNumber, room.RoomType.MaxGuests, guestCount],
+                        HttpStatusCode.BadRequest
+                    );
+                }
+            }
+        }
+
         public async Task<BookingDetailDto> GetByIdAsync(Guid id)
         {
             var booking = await _unitOfWork.GenericRepository<Booking>()
                 .GetQueryable()
                 .Include(x => x.Customer)
                 .Include(x => x.BookingRooms)!.ThenInclude(br => br.Room)!.ThenInclude(r => r!.RoomType)
-                .Include(x => x.BookingRooms)!.ThenInclude(br => br.Room)!.ThenInclude(r => r!.Branch)
                 .Include(x => x.BookingPayments)
                 .Include(x => x.Review)
                 .AsNoTracking()
@@ -259,7 +260,6 @@ namespace CRM_Homestay.Service.Amenities
                     statusCode: HttpStatusCode.NotFound
                 );
             }
-            var branch = booking.BookingRooms?.FirstOrDefault()?.Room?.Branch;
 
             var dto = new BookingDetailDto
             {
@@ -324,6 +324,14 @@ namespace CRM_Homestay.Service.Amenities
                     code: BookingErrorCode.NotFound,
                     message: L[BookingErrorCode.NotFound],
                     statusCode: HttpStatusCode.NotFound
+                );
+            }
+            if (booking.Status == BookingStatuses.Completed || booking.Status == BookingStatuses.Cancelled)
+            {
+                throw new GlobalException(
+                    code: BookingErrorCode.CannotUpdate,
+                    message: L[BookingErrorCode.CannotUpdate, booking.Status.GetDescription()],
+                    statusCode: HttpStatusCode.BadRequest
                 );
             }
 
@@ -676,44 +684,46 @@ namespace CRM_Homestay.Service.Amenities
         {
             var existingRooms = booking.BookingRooms!.ToList();
             var inputRoomIds = input.BookingRooms!.Select(x => x.RoomId).ToList();
+            var cleaningMinutes = await _systemSettingService.GetCleaningMinutesAsync();
 
-            // case 1: Xóa phòng không còn trong input
             var toRemove = existingRooms.Where(er => !inputRoomIds.Contains(er.RoomId)).ToList();
             foreach (var remove in toRemove)
             {
-                // xóa RoomUsage
                 var usages = await _unitOfWork.GenericRepository<RoomUsage>()
                     .GetQueryable()
                     .Where(u => u.BookingRoomId == remove.Id)
                     .ToListAsync();
 
-                foreach (var usage in usages)
-                    _unitOfWork.GenericRepository<RoomUsage>().Remove(usage);
-
+                _unitOfWork.GenericRepository<RoomUsage>().RemoveRange(usages);
                 _unitOfWork.GenericRepository<BookingRoom>().Remove(remove);
             }
 
-            // case 2: Cập nhật phòng giữ nguyên
             foreach (var br in existingRooms.Where(er => inputRoomIds.Contains(er.RoomId)))
             {
                 var inputRoom = input.BookingRooms!.First(x => x.RoomId == br.RoomId);
-                br.GuestCounts = (inputRoom.GuestCounts.HasValue && inputRoom.GuestCounts.Value != 0)
-                    ? inputRoom.GuestCounts.GetValueOrDefault()
-                    : br.GuestCounts;
+                br.GuestCounts = inputRoom.GuestCounts ?? br.GuestCounts;
 
-                // cập nhật RoomUsage (CheckIn/CheckOut có thể thay đổi)
                 var usages = await _unitOfWork.GenericRepository<RoomUsage>()
                     .GetQueryable()
                     .Where(u => u.BookingRoomId == br.Id)
                     .ToListAsync();
-                foreach (var usage in usages)
+
+                var bookedUsage = usages.FirstOrDefault(u => u.Status == RoomStatuses.Booked);
+                var cleaningUsage = usages.FirstOrDefault(u => u.Status == RoomStatuses.Cleaning);
+
+                if (bookedUsage != null)
                 {
-                    usage.StartAt = booking.CheckIn;
-                    usage.EndAt = booking.CheckOut;
+                    bookedUsage.StartAt = booking.CheckIn;
+                    bookedUsage.EndAt = booking.CheckOut;
+                }
+
+                if (cleaningUsage != null)
+                {
+                    cleaningUsage.StartAt = booking.CheckOut;
+                    cleaningUsage.EndAt = booking.CheckOut.AddMinutes(cleaningMinutes);
                 }
             }
 
-            // case 3: Thêm phòng mới
             var newRooms = input.BookingRooms!.Where(ir => !existingRooms.Any(er => er.RoomId == ir.RoomId)).ToList();
             foreach (var nr in newRooms)
             {
@@ -726,7 +736,7 @@ namespace CRM_Homestay.Service.Amenities
 
                 await _unitOfWork.GenericRepository<BookingRoom>().AddAsync(newBookingRoom);
 
-                var usage = new RoomUsage
+                var bookedUsage = new RoomUsage
                 {
                     RoomId = nr.RoomId,
                     BookingRoomId = newBookingRoom.Id,
@@ -734,10 +744,19 @@ namespace CRM_Homestay.Service.Amenities
                     EndAt = booking.CheckOut,
                     Status = RoomStatuses.Booked
                 };
-                await _unitOfWork.GenericRepository<RoomUsage>().AddAsync(usage);
+                var cleaningUsage = new RoomUsage
+                {
+                    RoomId = nr.RoomId,
+                    BookingRoomId = newBookingRoom.Id,
+                    StartAt = booking.CheckOut,
+                    EndAt = booking.CheckOut.AddMinutes(cleaningMinutes),
+                    Status = RoomStatuses.Cleaning
+                };
+
+                await _unitOfWork.GenericRepository<RoomUsage>().AddRangeAsync(new[] { bookedUsage, cleaningUsage });
             }
         }
-
+        
         private async Task RecalculateBookingPriceWithDiscountsAsync(Booking booking, UpdateBookingDto input)
         {
             decimal totalPrice = 0;
@@ -753,11 +772,7 @@ namespace CRM_Homestay.Service.Amenities
                     br.PricingSnapshot = pricingSnapshot;
                 }
             }
-
-            var customer = await _unitOfWork.GenericRepository<Customer>()
-                .GetQueryable()
-                .Include(x => x.Group!)
-                .FirstOrDefaultAsync(x => x.Id == booking.CustomerId);
+            var customer = await GetCustomerAsync(booking.CustomerId);
 
             var discountData = new DiscountData
             {
@@ -829,7 +844,7 @@ namespace CRM_Homestay.Service.Amenities
                 .GetQueryable()
                 .Where(x => !x.DeletedAt.HasValue || (x.DeletedAt.HasValue && x.DeletedAt.Value.Date >= threeMonthsAgo.Date))
                 .Include(x => x.Customer)
-                .Include(x => x.BookingRooms!).ThenInclude(y => y.Room!).ThenInclude(z => z.Branch)
+                .Include(x => x.BookingRooms!).ThenInclude(y => y.Room!)
                 .AsNoTracking()
                 .OrderByDescending(x => x.CreationTime)
                 .ToListAsync();
@@ -919,16 +934,7 @@ namespace CRM_Homestay.Service.Amenities
 
         public async Task<ReviewBookingResultDto> ReviewBookingPriceAsync(ReviewBookingRequestDto input)
         {
-            var customer = await _unitOfWork.GenericRepository<Customer>()
-                .GetQueryable()
-                .Include(c => c.Group)
-                .FirstOrDefaultAsync(c => c.Id == input.CustomerId);
-
-            if (customer == null)
-                throw new GlobalException(
-                    code: CustomerErrorCode.NotFound,
-                    message: L[CustomerErrorCode.NotFound],
-                    statusCode: HttpStatusCode.BadRequest);
+            var customer = await GetCustomerAsync(input.CustomerId);
 
             decimal baseTotal = 0;
             var roomPrices = new List<RoomPriceDetailDto>();
@@ -1013,6 +1019,25 @@ namespace CRM_Homestay.Service.Amenities
                 RoomPrices = roomPrices,
                 BookingPrice = aggregatedBooking
             };
+        }
+
+
+        private async Task<Customer> GetCustomerAsync(Guid customerId)
+        {
+            var customer = await _unitOfWork.GenericRepository<Customer>()
+                .GetQueryable()
+                .Include(x => x.Group!)
+                .FirstOrDefaultAsync(x => x.Id == customerId);
+
+            if (customer == null)
+            {
+                throw new GlobalException(
+                    code: CustomerErrorCode.NotFound,
+                    message: L[CustomerErrorCode.NotFound],
+                    statusCode: HttpStatusCode.NotFound
+                );
+            }
+            return customer;
         }
     }
 }

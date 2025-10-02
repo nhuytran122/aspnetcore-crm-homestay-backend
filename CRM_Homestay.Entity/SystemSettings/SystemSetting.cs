@@ -1,8 +1,9 @@
-﻿using CRM_Homestay.Entity.Bases;
+﻿using CRM_Homestay.Core.Models;
+using CRM_Homestay.Entity.Bases;
 
 namespace CRM_Homestay.Entity.SystemSettings
 {
-    public class SystemSetting : BaseEntity
+    public class SystemSetting : BaseEntity, IAuditable
     {
         public string SystemName { get; set; } = string.Empty;
         public string ConfigKey { get; set; } = string.Empty;

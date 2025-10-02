@@ -1,10 +1,11 @@
 using CRM_Homestay.Entity.Bases;
 using CRM_Homestay.Entity.Customers;
 using CRM_Homestay.Core.Enums;
+using CRM_Homestay.Core.Models;
 
 namespace CRM_Homestay.Entity.Coupons;
 
-public class Coupon : BaseEntity
+public class Coupon : BaseEntity, IAuditable
 {
     public string Code { get; set; } = string.Empty;
 

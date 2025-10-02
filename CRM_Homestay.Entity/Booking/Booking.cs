@@ -4,12 +4,13 @@ using CRM_Homestay.Core.Models;
 using CRM_Homestay.Entity.Bases;
 using CRM_Homestay.Entity.BookingPayments;
 using CRM_Homestay.Entity.BookingRooms;
+using CRM_Homestay.Entity.BookingServices;
 using CRM_Homestay.Entity.Customers;
 using CRM_Homestay.Entity.Reviews;
 
 namespace CRM_Homestay.Entity.Bookings
 {
-    public class Booking : BaseEntity
+    public class Booking : BaseEntity, IAuditable
     {
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
@@ -20,7 +21,7 @@ namespace CRM_Homestay.Entity.Bookings
         public BookingStatuses Status { get; set; } = BookingStatuses.Pending;
         public DateTime? DeletedAt { get; set; }
         public Guid? BookingParentId { get; set; }
-        
+
         [Column(TypeName = "json")]
         public DiscountData? DiscountData { get; set; }
         public Guid CustomerId { get; set; }
@@ -32,5 +33,6 @@ namespace CRM_Homestay.Entity.Bookings
         public Review? Review { get; set; }
 
         public List<BookingPayment>? BookingPayments { get; set; }
+        public List<BookingService>? BookingServices { get; set; }
     }
 }

@@ -15,11 +15,15 @@ public class CreateBookingValidator : AbstractValidator<CreateBookingDto>
 
         RuleFor(x => x.CheckIn)
             .NotNull()
-            .WithMessage(L["Validator.IsRequired"]);
+            .WithMessage(L["Validator.IsRequired"])
+            .Must(checkOut => checkOut >= DateTime.Now)
+            .WithMessage(L["Validator.StartDateMustBeInFuture"]);
 
         RuleFor(x => x.CheckOut)
             .NotNull()
-            .WithMessage(L["Validator.IsRequired"]);
+            .WithMessage(L["Validator.IsRequired"])
+            .Must(checkIn => checkIn >= DateTime.Now)
+            .WithMessage(L["Validator.EndDateMustBeInFuture"]);
 
         // RuleFor(x => x.TotalGuests.ToString())
         //     .NotEmpty()
@@ -65,10 +69,14 @@ public class CreateBookingValidator : AbstractValidator<CreateBookingDto>
         {
             RuleFor(x => x.CheckIn)
                 .NotNull()
-                .WithMessage(L["Validator.IsRequired"]);
+                .WithMessage(L["Validator.IsRequired"])
+                .Must(checkOut => checkOut >= DateTime.Now)
+                .WithMessage(L["Validator.StartDateMustBeInFuture"]);
             RuleFor(x => x.CheckOut)
                 .NotNull()
-                .WithMessage(L["Validator.IsRequired"]);
+                .WithMessage(L["Validator.IsRequired"])
+                .Must(checkIn => checkIn >= DateTime.Now)
+                .WithMessage(L["Validator.EndDateMustBeInFuture"]);
 
             RuleFor(x => x)
                 .Must(x =>

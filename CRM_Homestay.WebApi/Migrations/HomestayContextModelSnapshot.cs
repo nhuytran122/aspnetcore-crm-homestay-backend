@@ -53,7 +53,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Amenities");
+                    b.ToTable("Amenities", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.AuditLogs.AuditLog", b =>
@@ -95,7 +95,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AuditLogs");
+                    b.ToTable("AuditLogs", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.BookingPaymentDetails.BookingPaymentDetail", b =>
@@ -129,7 +129,7 @@ namespace CRM_Homestay.App.Migrations
                     b.HasIndex("BookingServiceId")
                         .IsUnique();
 
-                    b.ToTable("BookingPaymentDetails");
+                    b.ToTable("BookingPaymentDetails", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.BookingPayments.BookingPayment", b =>
@@ -183,7 +183,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("StaffId");
 
-                    b.ToTable("BookingPayments");
+                    b.ToTable("BookingPayments", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.BookingRooms.BookingRoom", b =>
@@ -222,7 +222,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("BookingRooms");
+                    b.ToTable("BookingRooms", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.BookingServiceItems.BookingServiceItem", b =>
@@ -261,7 +261,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("ServiceItemId");
 
-                    b.ToTable("BookingServiceItems");
+                    b.ToTable("BookingServiceItems", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.BookingServices.BookingService", b =>
@@ -321,7 +321,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("BookingServices");
+                    b.ToTable("BookingServices", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Bookings.Booking", b =>
@@ -386,7 +386,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.BranchInventories.BranchInventory", b =>
@@ -410,7 +410,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("BranchInventories");
+                    b.ToTable("BranchInventories", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Branches.Branch", b =>
@@ -468,7 +468,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("MediaId");
 
-                    b.ToTable("Branches");
+                    b.ToTable("Branches", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Coupons.Coupon", b =>
@@ -524,7 +524,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Coupons");
+                    b.ToTable("Coupons", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.CustomerGroups.CustomerGroup", b =>
@@ -584,7 +584,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CustomerGroups");
+                    b.ToTable("CustomerGroups", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Customers.Customer", b =>
@@ -660,7 +660,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Customers.CustomerAccount", b =>
@@ -721,7 +721,7 @@ namespace CRM_Homestay.App.Migrations
                     b.HasIndex("CustomerId")
                         .IsUnique();
 
-                    b.ToTable("CustomerAccount");
+                    b.ToTable("CustomerAccount", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Customers.CustomerAccountToken", b =>
@@ -753,7 +753,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("CustomerAccountId");
 
-                    b.ToTable("CustomerAccountTokens");
+                    b.ToTable("CustomerAccountTokens", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Districts.District", b =>
@@ -782,7 +782,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("ProvinceId");
 
-                    b.ToTable("Districts");
+                    b.ToTable("Districts", (string)null);
 
                     b.HasData(
                         new
@@ -6467,7 +6467,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("ImportProductDetailId");
 
-                    b.ToTable("ExportProductDetailHistories");
+                    b.ToTable("ExportProductDetailHistories", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.FAQs.FAQ", b =>
@@ -6504,7 +6504,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FAQs");
+                    b.ToTable("FAQs", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.HomestayMaintenances.HomestayMaintenance", b =>
@@ -6557,7 +6557,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("BranchId");
 
-                    b.ToTable("HomestayMaintenances");
+                    b.ToTable("HomestayMaintenances", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.HomestayMaintenances.MaintenanceRoom", b =>
@@ -6593,7 +6593,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("MaintenanceRooms");
+                    b.ToTable("MaintenanceRooms", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.HomestayServices.HomestayService", b =>
@@ -6638,7 +6638,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HomestayServices");
+                    b.ToTable("HomestayServices", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.ImportProductDetails.ImportProductDetail", b =>
@@ -6671,7 +6671,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ImportProductDetails");
+                    b.ToTable("ImportProductDetails", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.ImportProducts.ImportProduct", b =>
@@ -6722,7 +6722,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ImportProducts");
+                    b.ToTable("ImportProducts", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Media.MediaReview", b =>
@@ -6743,7 +6743,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("ReviewId");
 
-                    b.ToTable("MediaReviews");
+                    b.ToTable("MediaReviews", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Medias.BaseMedia", b =>
@@ -6786,7 +6786,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BaseMedias");
+                    b.ToTable("BaseMedias", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Medias.MediaRoom", b =>
@@ -6807,7 +6807,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("MediaRooms");
+                    b.ToTable("MediaRooms", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.ProductCategories.ProductCategory", b =>
@@ -6843,7 +6843,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("ProductCategories", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Products.Product", b =>
@@ -6892,7 +6892,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("ProductCategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Provinces.Province", b =>
@@ -6916,7 +6916,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Provinces");
+                    b.ToTable("Provinces", (string)null);
 
                     b.HasData(
                         new
@@ -7394,7 +7394,7 @@ namespace CRM_Homestay.App.Migrations
                     b.HasIndex("BookingId")
                         .IsUnique();
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.RoleClaims.RoleClaim", b =>
@@ -7622,7 +7622,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("RoomAmenities");
+                    b.ToTable("RoomAmenities", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.RoomPricings.RoomPricing", b =>
@@ -7680,7 +7680,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("RoomTypeId");
 
-                    b.ToTable("RoomPricings");
+                    b.ToTable("RoomPricings", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.RoomTypes.RoomType", b =>
@@ -7725,7 +7725,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("MediaId");
 
-                    b.ToTable("RoomTypes");
+                    b.ToTable("RoomTypes", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.RoomUsages.RoomUsage", b =>
@@ -7775,7 +7775,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("RoomUsages");
+                    b.ToTable("RoomUsages", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Rooms.Room", b =>
@@ -7817,7 +7817,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("RoomTypeId");
 
-                    b.ToTable("Rooms");
+                    b.ToTable("Rooms", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.Rules.Rule", b =>
@@ -7854,7 +7854,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Rules");
+                    b.ToTable("Rules", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.ServiceItems.ServiceItem", b =>
@@ -7903,7 +7903,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("HomestayServiceId");
 
-                    b.ToTable("ServiceItems");
+                    b.ToTable("ServiceItems", (string)null);
                 });
 
             modelBuilder.Entity("CRM_Homestay.Entity.SystemSettings.SystemSetting", b =>
@@ -7944,7 +7944,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SystemSettings");
+                    b.ToTable("SystemSettings", (string)null);
 
                     b.HasData(
                         new
@@ -8252,7 +8252,7 @@ namespace CRM_Homestay.App.Migrations
 
                     b.HasIndex("DistrictId");
 
-                    b.ToTable("Wards");
+                    b.ToTable("Wards", (string)null);
 
                     b.HasData(
                         new

@@ -234,6 +234,7 @@ public class BookingErrorCode
     public const string InvalidBookingStatus = "Booking:0024";
     public const string CannotUpdate = "Booking:0025";
     public const string ExceedMaxGuests = "Booking:0026";
+    public const string PendingBookingExists = "Booking:0027";
 
 }
 

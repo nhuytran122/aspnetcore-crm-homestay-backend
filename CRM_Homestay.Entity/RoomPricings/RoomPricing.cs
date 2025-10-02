@@ -1,9 +1,10 @@
+using CRM_Homestay.Core.Models;
 using CRM_Homestay.Entity.Bases;
 using CRM_Homestay.Entity.RoomTypes;
 
 namespace CRM_Homestay.Entity.RoomPricings
 {
-    public class RoomPricing : BaseEntity
+    public class RoomPricing : BaseEntity, IAuditable
     {
         public int BaseDuration { get; set; } = 3;
         public decimal BasePrice { get; set; } = 0;
