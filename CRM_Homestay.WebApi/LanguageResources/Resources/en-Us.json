@@ -197,5 +197,18 @@
   "SystemSetting:0002": "This system setting does not exist",
 
   "OvernightStartTime": "Overnight Start Time",
-  "OvernightEndTime": "Overnight End Time"
+  "OvernightEndTime": "Overnight End Time",
+
+  "BookingService": "Booking service",
+  "BookingService:0001": "Booking service not found",
+  "BookingService:0002": "Quantity must be greater than zero",
+  "BookingService:0003": "Please select one item for service {0}",
+  "BookingService:0004": "For service {0}, start date and end date are required",
+  "BookingService:0005": "Please type quantity for service {0}",
+  "BookingService:0006": "The total quantity for service {0} must equal the number of selected items ({1})",
+  "BookingService:0007": "Service {0} has no items configured yet",
+  "BookingService:0008": "Some service items are duplicated in request: {0}",
+  "BookingService:0009": "Some service are duplicated in request",
+  "BookingService:0010": "The customer already has a pending booking service. Please complete it before creating a new one",
+  "BookingService:0011": "ServiceItem '{0}' is invalid for this Booking service"
 }

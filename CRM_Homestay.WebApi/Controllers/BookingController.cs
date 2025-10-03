@@ -4,6 +4,7 @@ using CRM_Homestay.Core.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CRM_Homestay.Contract.Bookings;
+using CRM_Homestay.Contract.BookingServices;
 
 namespace CRM_Homestay.App.Controllers
 {
@@ -16,14 +17,17 @@ namespace CRM_Homestay.App.Controllers
     public class BookingController : BaseController
     {
         private readonly IBookingService _bookingService;
+        private readonly IBookingServiceService _bookingServiceService;
         /// <summary>
         /// BookingController init
         /// </summary>
         /// <param name="bookingService"></param>
+        /// <param name="bookingServiceService"></param>
         /// <param name="httpContextAccessor"></param>
-        public BookingController(IBookingService bookingService, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
+        public BookingController(IBookingService bookingService, IBookingServiceService bookingServiceService, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             _bookingService = bookingService;
+            _bookingServiceService = bookingServiceService;
         }
 
         /// <summary>
@@ -114,6 +118,18 @@ namespace CRM_Homestay.App.Controllers
         public async Task<bool> CancelBooking(Guid id)
         {
             return await _bookingService.CancelBookingAsync(id);
+        }
+
+        /// <summary>
+        /// Đặt dịch vụ (sau khi book phòng)
+        /// </summary>
+        /// <param name="input"></param>
+        /// /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost("{id}/booking-services")]
+        public async Task<List<BookingServiceDto>> CreateBookingServices(Guid id, [FromBody] CreateBookingServicesDto input)
+        {
+            return await _bookingServiceService.CreateBookingServicesFromBooking(id, input);
         }
 
     }

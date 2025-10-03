@@ -12,7 +12,7 @@ namespace CRM_Homestay.Entity.BookingServices
 {
     public class BookingService : BaseEntity, IAuditable
     {
-        public double Quantity { get; set; }
+        public double? Quantity { get; set; }
         public string? Description { get; set; }
         public Guid BookingId { get; set; }
         public Guid ServiceId { get; set; }

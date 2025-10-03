@@ -209,12 +209,12 @@ namespace CRM_Homestay.Service.Amenities
                     var firstConflict = conflicts.First();
                     throw new GlobalException(
                         BookingErrorCode.RoomUnavailable,
-                        string.Format(
-                            L[BookingErrorCode.RoomUnavailable],
+                        L[BookingErrorCode.RoomUnavailable,
                             string.Join(", ", conflicts.Select(c => c.RoomNumber)),
                             firstConflict.StartAt.ToString("dd/MM/yyyy HH:mm"),
                             firstConflict.EndAt.ToString("dd/MM/yyyy HH:mm")
-                        ),
+                            ]
+                        ,
                         HttpStatusCode.BadRequest
                     );
                 }
@@ -756,7 +756,7 @@ namespace CRM_Homestay.Service.Amenities
                 await _unitOfWork.GenericRepository<RoomUsage>().AddRangeAsync(new[] { bookedUsage, cleaningUsage });
             }
         }
-        
+
         private async Task RecalculateBookingPriceWithDiscountsAsync(Booking booking, UpdateBookingDto input)
         {
             decimal totalPrice = 0;

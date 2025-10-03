@@ -137,6 +137,7 @@
   "ServiceItem:0002": "Thiết bị dịch vụ đã tồn tại",
   "ServiceItem:0003": "Thiết bị dịch vụ không tồn tại",
   "ServiceItem:0004": "Không thể xóa thiết bị dịch vụ này vì nó đang được sử dụng trong một đặt dịch vụ còn hiệu lực",
+  "ServiceItem:0005": "{0} đã có lịch từ {1} đến {2}",
 
   "HomestayService": "Dịch vụ",
   "HomestayService:0001": "Dịch vụ này đã tồn tại",
@@ -202,5 +203,21 @@
   "SystemSetting:0002": "Chưa cấu hình hệ thống cho {0}",
 
   "OvernightStartTime": "Thời gian bắt đầu qua đêm",
-  "OvernightEndTime": "Thời gian kết thúc qua đêm"
+  "OvernightEndTime": "Thời gian kết thúc qua đêm",
+
+  "BookingService": "Đơn đặt dịch vụ",
+  "BookingService:0001": "Không tìm thấy đơn đặt dịch vụ",
+  "BookingService:0002": "Số lượng phải lớn hơn 0",
+  "BookingService:0003": "Vui  lòng chọn một phương tiện cho dịch vụ {0}",
+  "BookingService:0004": "Đối với dịch vụ {0}, vui lòng nhập ngày bắt đầu và ngày kết thúc",
+  "BookingService:0005": "Vui  lòng nhập số lượng cho dịch vụ {0}",
+  "BookingService:0006": "Tổng số lượng cho dịch vụ {0} phải bằng số lượng dịch vụ con đã chọn ({1})",
+  "BookingService:0007": "Dịch vụ {0} hiện chưa có phương tiện được cấu hình",
+  "BookingService:0008": "Một số phương tiện của dịch vụ bị trùng trong yêu cầu: {0}",
+  "BookingService:0009": "Một số dịch vụ bị trùng trong yêu cầu",
+  "BookingService:0010": "Khách hàng hiện đang có một đơn đặt dịch vụ chờ thanh toán. Vui lòng hoàn tất đơn đặt dịch vụ đó trước khi tạo mới",
+  "BookingService:0011": "Phương tiện '{0}' không hợp lệ với dịch vụ này",
+  "BookingService:0012": "Đơn dịch vụ đặt này đã được hủy trước đó",
+  "BookingService:0013": "Không thể hủy đơn dịch vụ đặt đã hoàn thành",
+  "BookingService:0014": "Không thể hủy đơn dịch vụ đặt đang được phục vụ"
 }

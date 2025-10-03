@@ -48,6 +48,7 @@ public class BaseErrorCode
     public const string SystemSetting = "SystemSetting";
     public const string OvernightStartTime = "OvernightStartTime";
     public const string OvernightEndTime = "OvernightEndTime";
+    public const string BookingService = "BookingService";
     public const string UnexpectedError = "UNEXPECTED_ERROR";
 }
 
@@ -162,6 +163,8 @@ public class ServiceItemErrorCode
     public const string AlreadyExists = "ServiceItem:0002";
     public const string NotFound = "ServiceItem:0003";
     public const string NotAllowedDelete = "ServiceItem:0004";
+
+    public const string ServiceItemUnavailable = "ServiceItem:0005";
 }
 
 public class HomestayServiceErrorCode
@@ -248,4 +251,24 @@ public class SystemSettingErrorCode
 {
     public const string AlreadyExists = "SystemSetting:0001";
     public const string NotFound = "SystemSetting:0002";
+}
+
+public class BookingServiceErrorCode
+{
+    public const string NotFound = "BookingService:0001";
+    public const string MustBeGreaterThanZero = "BookingService:0002";
+    public const string ServiceItemRequired = "BookingService:0003";
+    public const string DateRequired = "BookingService:0004";
+    public const string QuantityRequired = "BookingService:0005";
+    public const string QuantityMismatch = "BookingService:0006";
+    public const string ServiceItemNotConfigured = "BookingService:0007";
+    public const string ServiceItemDuplicateInRequest = "BookingService:0008";
+    public const string ServiceDuplicateInRequest = "BookingService:0009";
+    public const string PendingServiceExists = "BookingService:0010";
+    public const string InvalidServiceItem = "BookingService:0011";
+    public const string AlreadyCancelled = "BookingService:0012";
+    public const string CannotCancelCompleted = "BookingService:0013";
+    public const string CannotCancelInProgress = "BookingService:0014";
+
+
 }

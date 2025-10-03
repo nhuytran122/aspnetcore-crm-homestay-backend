@@ -60,6 +60,8 @@ using CRM_Homestay.Contract.Coupons;
 using CRM_Homestay.Service.Coupons;
 using CRM_Homestay.Contract.SystemSettings;
 using CRM_Homestay.Service.SystemSettings;
+using CRM_Homestay.Contract.BookingServices;
+using CRM_Homestay.Service.BookingServices;
 
 namespace CRM_Homestay.App.ServiceInstallers;
 
@@ -345,6 +347,7 @@ public static class Installers
         _services.AddScoped<ICouponService, CouponService>();
         _services.AddScoped<IBookingService, BookingService>();
         _services.AddScoped<ISystemSettingService, SystemSettingService>();
+        _services.AddScoped<IBookingServiceService, BookingServiceService>();
 
     }
 }

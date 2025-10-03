@@ -6,12 +6,12 @@ public enum BookingServiceStatuses
 {
     [Description("Chờ thanh toán")]
     Pending = 0,
-    [Description("Đang phục vụ")]    
+    [Description("Đang phục vụ")]
     InProgress = 1,
     [Description("Đã hoàn thành")]
-    Completed = 2,
+    Completed = 10,
     [Description("Đã hủy")]
-    Canceled = 3,
+    Cancelled = -10,
 }
 
 

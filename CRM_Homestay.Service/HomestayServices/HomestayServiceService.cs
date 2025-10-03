@@ -17,6 +17,7 @@ using CRM_Homestay.Core.Enums;
 using CRM_Homestay.Entity.ServiceItems;
 using CRM_Homestay.Core.Extensions;
 using CRM_Homestay.Entity.BookingServices;
+using CRM_Homestay.Contract.ServiceItems;
 
 namespace CRM_Homestay.Service.HomestayServices
 {
@@ -264,5 +265,25 @@ namespace CRM_Homestay.Service.HomestayServices
                 }
             }
         }
+
+        public async Task<List<ServiceItemDto>> GetServiceItemsByServiceIdAsync(Guid id)
+        {
+            var service = await _unitOfWork.GenericRepository<HomestayService>().GetAsync(x => x.Id == id);
+
+            if (service == null)
+                throw new GlobalException(
+                    HomestayServiceErrorCode.NotFound,
+                    L[HomestayServiceErrorCode.NotFound],
+                    HttpStatusCode.NotFound
+                );
+            var result = await _unitOfWork.GenericRepository<ServiceItem>()
+                            .GetQueryable()
+                            .AsNoTracking()
+                            .Include(x => x.HomestayService)
+                            .Where(x => x.HomestayServiceId == id)
+                            .ToListAsync();
+            return ObjectMapper.Map<List<ServiceItemDto>>(result);
+        }
+
     }
 }

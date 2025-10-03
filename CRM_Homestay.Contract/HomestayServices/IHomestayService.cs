@@ -1,4 +1,5 @@
 using CRM_Homestay.Contract.Bases;
+using CRM_Homestay.Contract.ServiceItems;
 
 namespace CRM_Homestay.Contract.HomestayServices
 {
@@ -10,5 +11,7 @@ namespace CRM_Homestay.Contract.HomestayServices
         Task<PagedResultDto<HomestayServiceDto>> GetPagingWithFilterAsync(HomestayServiceFilterDto input);
         Task<List<HomestayServiceDto>> GetAllAsync();
         Task DeleteAsync(Guid id);
+        Task<List<ServiceItemDto>> GetServiceItemsByServiceIdAsync(Guid id);
+
     }
 }

@@ -9,9 +9,9 @@ public enum BookingStatuses
     [Description("Đã xác nhận")]
     Confirmed = 1,
     [Description("Đã hoàn tất")]
-    Completed = 2,
+    Completed = 10,
     [Description("Đã hủy")]
-    Cancelled = 3,
+    Cancelled = -10,
 }
 
 

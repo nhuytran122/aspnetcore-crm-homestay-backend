@@ -9,9 +9,9 @@ public enum MaintenanceStatuses
     [Description("Đang thực hiện")]    
     InProgress = 1,
     [Description("Đã hoàn thành")]
-    Completed = 2,
+    Completed = 10,
     [Description("Đã hủy")]
-    Canceled = 3,
+    Canceled = -10,
 }
 
 

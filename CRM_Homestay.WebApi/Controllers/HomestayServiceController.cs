@@ -1,5 +1,6 @@
 using CRM_Homestay.Contract.Bases;
 using CRM_Homestay.Contract.HomestayServices;
+using CRM_Homestay.Contract.ServiceItems;
 using CRM_Homestay.Core.Consts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -93,5 +94,17 @@ namespace CRM_Homestay.App.Controllers
         {
             return await _homestayServiceService.GetAllAsync();
         }
+
+        /// <summary>
+        /// Lấy danh sách ServiceItem dựa vào HomestayServiceId
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/items")]
+        public async Task<List<ServiceItemDto>> GetServiceItems(Guid id)
+        {
+            return await _homestayServiceService.GetServiceItemsByServiceIdAsync(id);
+        }
+
     }
 }

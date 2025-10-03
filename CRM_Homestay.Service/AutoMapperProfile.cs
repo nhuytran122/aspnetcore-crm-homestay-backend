@@ -45,6 +45,9 @@ using CRM_Homestay.Entity.Bookings;
 using CRM_Homestay.Contract.Bookings;
 using CRM_Homestay.Core.Enums;
 using CRM_Homestay.Entity.BookingRooms;
+using CRM_Homestay.Entity.BookingServices;
+using CRM_Homestay.Contract.BookingServices;
+using CRM_Homestay.Entity.BookingServiceItems;
 
 namespace CRM_Homestay.Service;
 
@@ -189,6 +192,15 @@ public class AutoMapperProfile : Profile
 
         CreateMap<CreateBookingDto, Booking>();
         CreateMap<RoomPricing, BookingPricingSnapshot>();
+
+        CreateMap<BookingService, BookingServiceDto>()
+            .ForMember(dest => dest.ServiceName, opt => opt.MapFrom(src => src.Service!.Name))
+            .ForMember(dest => dest.AssignedStaffName, opt => opt.MapFrom(src => src.AssignedStaff != null ? src.AssignedStaff.FullName : null))
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
+            .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.BookingServiceItems));
+
+        CreateMap<BookingServiceItem, BookingServiceItemDto>()
+            .ForMember(dest => dest.Identifier, opt => opt.MapFrom(src => src.ServiceItem!.Identifier));
 
     }
 }
