@@ -26,6 +26,7 @@ using CRM_Homestay.Entity.ImportProductDetails;
 using CRM_Homestay.Entity.ImportProducts;
 using CRM_Homestay.Entity.Media;
 using CRM_Homestay.Entity.Medias;
+using CRM_Homestay.Entity.Otps;
 using CRM_Homestay.Entity.ProductCategories;
 using CRM_Homestay.Entity.Products;
 using CRM_Homestay.Entity.Provinces;
@@ -102,6 +103,10 @@ public class HomestayContext : IdentityDbContext<User, Role, Guid, UserClaim, Us
     public DbSet<Rule> Rules { get; set; }
     public DbSet<ServiceItem> ServiceItems { get; set; }
     public DbSet<SystemSetting> SystemSettings { get; set; }
+
+    public DbSet<OtpCode> OtpCodes { get; set; }
+    public DbSet<OtpProviderLog> OtpProviderLogs { get; set; }
+    public DbSet<OtpRequest> OtpRequests { get; set; }
 
     public IHttpContextAccessor _httpContextAccessor { get; set; }
     public Guid CurrentUserId { get; set; }
@@ -501,6 +506,74 @@ public class HomestayContext : IdentityDbContext<User, Role, Guid, UserClaim, Us
                     ConfigValue = "10000"
                 }
             );
+
+            // Seed config Zalo_OA
+            builder.Entity<SystemSetting>().HasData(
+                new SystemSetting
+                {
+                    Id = Guid.Parse("f6c8d07a-5a64-4f17-b36c-7a42b9c8a001"),
+                    SystemName = ConfigKey.ZaloOAConfigKey,
+                    ConfigKey = nameof(ZaloSystemConfigKeys.DEVELOPMENT_MODE),
+                    ConfigValue = "development"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("2a1d4c5e-21f0-4a3e-9c92-58f5b8fbb002"),
+                    SystemName = ConfigKey.ZaloOAConfigKey,
+                    ConfigKey = nameof(ZaloSystemConfigKeys.TEMPLATE_ID),
+                    ConfigValue = "956856"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("b39c2ff4-41e8-4663-96e1-bf9d6b3fa003"),
+                    SystemName = ConfigKey.ZaloOAConfigKey,
+                    ConfigKey = nameof(ZaloSystemConfigKeys.ADMIN_PHONE),
+                    ConfigValue = "0987456321"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("c6e1d902-7dcb-4f37-8c14-944feebca004"),
+                    SystemName = ConfigKey.ZaloOAConfigKey,
+                    ConfigKey = nameof(ZaloSystemConfigKeys.APP_ID),
+                    ConfigValue = "9652566698963****"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("4b7e5f5a-55fd-46ab-8576-739b7c1da005"),
+                    SystemName = ConfigKey.ZaloOAConfigKey,
+                    ConfigKey = nameof(ZaloSystemConfigKeys.SECRET_KEY),
+                    ConfigValue = "jhtitiytmjhjhkjkh****"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("d19f45f8-0f47-4d65-8f8d-0b64e1dda006"),
+                    SystemName = ConfigKey.ZaloOAConfigKey,
+                    ConfigKey = nameof(ZaloSystemConfigKeys.REFRESH_TOKEN),
+                    ConfigValue = "wxKYU4QW_aRgj2LwGljktytyutyu********"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("9a5c8a90-0a04-45a3-bef0-cc66d8b1a007"),
+                    SystemName = ConfigKey.ZaloOAConfigKey,
+                    ConfigKey = nameof(ZaloSystemConfigKeys.ACCESS_TOKEN),
+                    ConfigValue = "O_w29KxEtbnY_jklkl6Nv******"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("03a1f3c3-baf7-41f1-bc4b-36f7a6e8a008"),
+                    SystemName = ConfigKey.ZaloOAConfigKey,
+                    ConfigKey = nameof(ZaloSystemConfigKeys.EXPIRES_IN),
+                    ConfigValue = "2025-07-31T10:41:12.8294958Z"
+                },
+                new SystemSetting
+                {
+                    Id = Guid.Parse("8c17c3f1-d59e-45f9-9f63-81d85c8da009"),
+                    SystemName = ConfigKey.ZaloOAConfigKey,
+                    ConfigKey = nameof(ZaloSystemConfigKeys.COUNT_TO_LOCK),
+                    ConfigValue = "4"
+                }
+            );
+
         }
 
     }

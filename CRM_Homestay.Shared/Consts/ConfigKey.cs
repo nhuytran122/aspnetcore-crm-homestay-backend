@@ -12,5 +12,6 @@ namespace CRM_Homestay.Core.Consts
         public const string RoomPricing = "RoomPricing";
         public const string OvernightStartTime = "OvernightStartTime";
         public const string OvernightEndTime = "OvernightEndTime";
+        public const string ZaloOAConfigKey = "Zalo_OA";
     }
 }

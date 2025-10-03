@@ -49,6 +49,8 @@ public class BaseErrorCode
     public const string OvernightStartTime = "OvernightStartTime";
     public const string OvernightEndTime = "OvernightEndTime";
     public const string BookingService = "BookingService";
+    public const string OtpCode = "OtpCode";
+    public const string OtpProvider = "OtpProvider";
     public const string UnexpectedError = "UNEXPECTED_ERROR";
 }
 
@@ -92,6 +94,7 @@ public class CustomerAccountErrorCode
     public const string NotAllowUpdate = "NOT_ALLOW_UPDATE";
     public const string EmailAlreadyVerified = "EMAIL_ALREADY_VERIFIED";
     public const string AlreadyActive = "ALREADY_ACTIVE";
+    public const string PasswordNotMatched = "PASSWORD_NOT_MATCHED";
 }
 
 public class UploadErrorCode
@@ -269,6 +272,29 @@ public class BookingServiceErrorCode
     public const string AlreadyCancelled = "BookingService:0012";
     public const string CannotCancelCompleted = "BookingService:0013";
     public const string CannotCancelInProgress = "BookingService:0014";
+}
 
 
+public class OtpCodeErrorCode
+{
+    public const string InvalidEmail = "INVALID_EMAIL";
+    public const string InvalidPurpose = "INVALID_PURPOSE";
+    public const string InvalidReferenceTypes = "INVALID_REFERENCE_TYPE";
+    public const string OtpInvalid = "OTP_INVALID";
+    public const string OtpExpired = "OTP_EXPIRED";
+    public const string OtpLimitExceeded = "OTP_LIMIT_EXCEEDED";
+    public const string OtpLocked = "OTP_LOCKED";
+    public const string ValidationFailed = "VALIDATION_FAILED";
+    public const string ProviderSendFailed = "PROVIDER_SEND_FAILED";
+    public const string ReferenceNotFound = "REFERENCE_NOT_FOUND";
+}
+
+public class OtpProviderErrorCode
+{
+    public const string InvalidPhoneNumberFormat = "OtpProvider:0001";
+    public const string TemplateIdNotProvided = "OtpProvider:0002";
+    public const string InvalidMode = "OtpProvider:0003";
+    public const string AdminPhoneNotProvided = "OtpProvider:0004";
+    public const string AccessTokenNotFound = "OtpProvider:0005";
+    public const string IncompleteZaloConfig = "OtpProvider:0006";
 }

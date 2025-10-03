@@ -97,6 +97,7 @@
   "PHONE_NUMBER_MISMATCH": "Số điện thoại không khớp với thông tin khách hàng.",
   "CUSTOMER_ALREADY_LINKED": "Khách hàng này đã được liên kết với một tài khoản khác.",
   "CUSTOMER_ACCOUNT_ALREADY_LINKED": "Tài khoản này đã được liên kết trước đó.",
+  "PASSWORD_NOT_MATCHED": "Mật khẩu không khớp",
   "FORBIDDEN": "Bạn không có quyền truy cập tài nguyên này.",
 
   "NOT_ALLOW_UPDATE": "Không được cập nhật trạng thái cho tài khoản này.",
@@ -219,5 +220,24 @@
   "BookingService:0011": "Phương tiện '{0}' không hợp lệ với dịch vụ này",
   "BookingService:0012": "Đơn dịch vụ đặt này đã được hủy trước đó",
   "BookingService:0013": "Không thể hủy đơn dịch vụ đặt đã hoàn thành",
-  "BookingService:0014": "Không thể hủy đơn dịch vụ đặt đang được phục vụ"
+  "BookingService:0014": "Không thể hủy đơn dịch vụ đặt đang được phục vụ",
+
+  "OtpCode": "Mã xác thực",
+  "INVALID_EMAIL": "Email không hợp lệ",
+  "INVALID_PURPOSE": "Mục đính không hợp lệ",
+  "INVALID_REFERENCE_TYPE": "Phương thức định danh không hợp lệ",
+  "OTP_INVALID": "Người dùng nhập OTP không đúng",
+  "OTP_EXPIRED": "OTP đã hết hạn",
+  "OTP_LIMIT_EXCEEDED": "Người dùng đã yêu cầu OTP quá nhiều",
+  "OTP_LOCKED": "Người dùng đã vượt quá số lần thử và lock",
+  "VALIDATION_FAILED": "Tham số đầu vào không đúng",
+  "PROVIDER_SEND_FAILED": "Mã OTP không thể gửi đi",
+  "REFERENCE_NOT_FOUND": "Tài khoản không tồn tại",
+
+  "OtpProvider": "Nhà cung cấp OTP",
+  "OtpProvider:0001": "Số điện thoại không đúng định dạng",
+  "OtpProvider:0002": "TemplateId chưa được cung cấp",
+  "OtpProvider:0003": "Chế độ Mode không đúng",
+  "OtpProvider:0004": "SDT Admin chưa được cung cấp",
+  "OtpProvider:0005": "Không thể lấy được Token"
 }

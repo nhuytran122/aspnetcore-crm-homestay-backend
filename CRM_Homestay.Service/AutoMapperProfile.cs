@@ -48,6 +48,8 @@ using CRM_Homestay.Entity.BookingRooms;
 using CRM_Homestay.Entity.BookingServices;
 using CRM_Homestay.Contract.BookingServices;
 using CRM_Homestay.Entity.BookingServiceItems;
+using CRM_Homestay.Contract.OtpCodes;
+using CRM_Homestay.Entity.Otps;
 
 namespace CRM_Homestay.Service;
 
@@ -202,5 +204,9 @@ public class AutoMapperProfile : Profile
         CreateMap<BookingServiceItem, BookingServiceItemDto>()
             .ForMember(dest => dest.Identifier, opt => opt.MapFrom(src => src.ServiceItem!.Identifier));
 
+        CreateMap<SendOtpCodeDto, OtpCode>();
+        CreateMap<OtpProviderLogDto, OtpProviderLog>()
+            .ForMember(dest => dest.ProviderName, opt => opt.MapFrom(src => src.ProviderName ?? "")) 
+            .ForMember(dest => dest.StatusCode, opt => opt.MapFrom(src => (int?)src.StatusCode));   
     }
 }

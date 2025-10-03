@@ -62,6 +62,13 @@ using CRM_Homestay.Contract.SystemSettings;
 using CRM_Homestay.Service.SystemSettings;
 using CRM_Homestay.Contract.BookingServices;
 using CRM_Homestay.Service.BookingServices;
+using CRM_Homestay.Contract.ZaloOA;
+using CRM_Homestay.Service.WarehouseTransfers;
+using CRM_Homestay.Contract.OtpCodes;
+using CRM_Homestay.Service.OtpCodes.Providers;
+using CRM_Homestay.Service.OtpCodes;
+using CRM_Homestay.Contract.CustomerAccounts;
+using CRM_Homestay.Service.CustomerAccounts;
 
 namespace CRM_Homestay.App.ServiceInstallers;
 
@@ -348,6 +355,15 @@ public static class Installers
         _services.AddScoped<IBookingService, BookingService>();
         _services.AddScoped<ISystemSettingService, SystemSettingService>();
         _services.AddScoped<IBookingServiceService, BookingServiceService>();
+
+        _services.AddScoped<IZaloAuthService, ZaloAuthService>();
+
+        _services.AddScoped<IOtpProvider, EmailOtpProvider>();
+        _services.AddScoped<IOtpProvider, DumpOtpProvider>();
+        _services.AddScoped<IOtpProvider, ZaloOtpProvider>();
+
+        _services.AddScoped<IOtpCodeService, OtpCodeService>();
+        _services.AddScoped<ICustomerAccountService, CustomerAccountService>();
 
     }
 }

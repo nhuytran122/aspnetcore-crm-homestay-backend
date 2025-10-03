@@ -97,6 +97,7 @@
   "STATUS_NOT_ALLOWED": "You do not have permissing to update this status.",
   "NOT_ALLOW_UPDATE": "You do not have permission to update status for this account.",
   "EMAIL_ALREADY_VERIFIED": "Email has been verified, update not allowed.",
+  "PASSWORD_NOT_MATCHED": "Password does not match",
   "NOT_CANCEL": "Order cannot be canceled",
 
   "Branch": "Branch",
@@ -210,5 +211,24 @@
   "BookingService:0008": "Some service items are duplicated in request: {0}",
   "BookingService:0009": "Some service are duplicated in request",
   "BookingService:0010": "The customer already has a pending booking service. Please complete it before creating a new one",
-  "BookingService:0011": "ServiceItem '{0}' is invalid for this Booking service"
+  "BookingService:0011": "ServiceItem '{0}' is invalid for this Booking service",
+
+  "OtpCode": "Otp Code",
+  "INVALID_EMAIL": "Invalid email",
+  "INVALID_PURPOSE": "Invalid purpose",
+  "INVALID_REFERENCE_TYPE": "Invalid reference type",
+  "OTP_INVALID": "User entered incorrect OTP",
+  "OTP_EXPIRED": "OTP expired",
+  "OTP_LIMIT_EXCEEDED": "User requested too many OTPs",
+  "OTP_LOCKED": "User exceeded the number of attempts and locked",
+  "VALIDATION_FAILED": "Input parameters are not in the correct format",
+  "PROVIDER_SEND_FAILED": "OTP can not sent on this time",
+  "REFERENCE_NOT_FOUND": "Account does not exist",
+
+  "OtpProvider": "OTP Provider",
+  "OtpProvider:0001": "Invalid phone number format",
+  "OtpProvider:0002": "TemplateId has not been provided",
+  "OtpProvider:0003": "Invalid mode configuration",
+  "OtpProvider:0004": "Admin phone number has not been provided",
+  "OtpProvider:0005": "Unable to retrieve access token"
 }
