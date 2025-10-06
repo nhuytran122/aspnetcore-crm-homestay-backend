@@ -1,4 +1,7 @@
 
+using CRM_Homestay.Contract.OtpCodes.Handlers;
+using CRM_Homestay.Service.OtpCodes.Handlers;
+
 namespace CRM_Homestay.App.Extensions;
 
 /// <summary>
@@ -13,7 +16,7 @@ public static class CommandHandlerServiceCollectionExtensions
     /// <returns>The modified service collection.</returns>
     public static IServiceCollection AddCommandHandlers(this IServiceCollection services)
     {
-
+        services.AddScoped<IOtpTokenHandler, OtpTokenHandler>();
         return services;
     }
 }
