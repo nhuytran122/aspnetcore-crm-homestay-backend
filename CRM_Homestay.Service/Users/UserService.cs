@@ -379,7 +379,7 @@ public class UserService : BaseService, IUserService
         return CreateAsync(input);
     }
 
-    public async Task ResetPasswordAsync(ResetRequestDto request, Guid id)
+    public async Task ResetPasswordAsync(ResetPasswordRequestDto request, Guid id)
     {
 
         var user = await _userManager.FindByIdAsync(id.ToString());
@@ -401,7 +401,7 @@ public class UserService : BaseService, IUserService
         }
     }
 
-    public async Task SetNewPasswordAsync(NewPasswordRequestDto input, Guid id)
+    public async Task SetNewPasswordAsync(ChangePasswordRequestDto input, Guid id)
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
         if (user == null)

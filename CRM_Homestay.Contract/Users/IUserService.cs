@@ -22,8 +22,8 @@ public interface IUserService : IApplicationService
     public Task<UserDto> SignUpAsync(CreateUserDto input);
 
 
-    public Task ResetPasswordAsync(ResetRequestDto request, Guid id);
-    public Task SetNewPasswordAsync(NewPasswordRequestDto input, Guid id);
+    public Task ResetPasswordAsync(ResetPasswordRequestDto request, Guid id);
+    public Task SetNewPasswordAsync(ChangePasswordRequestDto input, Guid id);
 
     public Task<List<ClaimDto>> GetClaims(Guid id);
     public Task<UserClaimsDto> GetUserClaimsAndRoleClaims(Guid id);

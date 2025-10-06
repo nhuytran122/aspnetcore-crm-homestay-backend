@@ -109,6 +109,7 @@ public class HomestayContext : IdentityDbContext<User, Role, Guid, UserClaim, Us
     public DbSet<OtpRequest> OtpRequests { get; set; }
 
     public IHttpContextAccessor _httpContextAccessor { get; set; }
+    public DbSet<CustomerPoint> CustomerPoints { get; set; }
     public Guid CurrentUserId { get; set; }
     private string RootPath { get; set; }
 

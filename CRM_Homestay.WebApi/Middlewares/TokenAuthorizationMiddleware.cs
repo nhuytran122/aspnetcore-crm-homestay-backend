@@ -1,10 +1,10 @@
 ﻿using System.Security.Claims;
 using CRM_Homestay.App.Attributes;
+using CRM_Homestay.Contract.CustomerAccounts;
 using CRM_Homestay.Core.Consts;
 using CRM_Homestay.Core.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Filters;
-using CRM_Homestay.Contract.Users;
 
 namespace CRM_Homestay.App.Middlewares
 {
@@ -68,25 +68,25 @@ namespace CRM_Homestay.App.Middlewares
                 return;
             }
 
-            if (type == Core.Enums.TokenTypes.user_token.ToString())
+            if (type == Core.Enums.TokenTypes.customer_token.ToString())
             {
 
-                var userAccountId = context.User.Claims.FirstOrDefault(x => x.Type == CustomerAccountConst.CLAIM_CUSTOMER_ACCOUNT_ID_KEY)?.Value;
+                var customerAccountId = context.User.Claims.FirstOrDefault(x => x.Type == CustomerAccountConst.CLAIM_CUSTOMER_ACCOUNT_ID_KEY)?.Value;
 
-                if (string.IsNullOrEmpty(userAccountId) || !Guid.TryParse(userAccountId, out var id))
+                if (string.IsNullOrEmpty(customerAccountId) || !Guid.TryParse(customerAccountId, out var id))
                 {
                     context = await ModifyHttpContext(context);
                     return;
                 }
-                var userAccountService = context.RequestServices.GetRequiredService<IUserService>();
+                var customerAccountService = context.RequestServices.GetRequiredService<ICustomerAccountService>();
 
-                var userAccount = await userAccountService.GetAsync(id);
-                if (userAccount == null)
+                var customerAccount = await customerAccountService.GetActiveAccountAsync(id);
+                if (customerAccount == null)
                 {
                     context = await ModifyHttpContext(context);
                     return;
                 }
-                context.Items[CustomerAccountConst.HTTP_CONTEXT_ITEM_CUSTOMER_ACCOUNT_KEY] = userAccount;
+                context.Items[CustomerAccountConst.HTTP_CONTEXT_ITEM_CUSTOMER_ACCOUNT_KEY] = customerAccount;
             }
 
             await _next(context);

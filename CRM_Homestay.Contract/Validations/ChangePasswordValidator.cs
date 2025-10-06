@@ -5,9 +5,9 @@ using FluentValidation;
 
 namespace CRM_Homestay.Contract.Validations;
 
-public class NewPasswordRequestValidator : AbstractValidator<NewPasswordRequestDto>
+public class ChangePasswordRequestValidator : AbstractValidator<ChangePasswordRequestDto>
 {
-    public NewPasswordRequestValidator(Localizer L)
+    public ChangePasswordRequestValidator(Localizer L)
     {
         RuleFor(x => x.OldPassword)
             .NotEmpty()
@@ -33,9 +33,9 @@ public class NewPasswordRequestValidator : AbstractValidator<NewPasswordRequestD
     }
 }
 
-public class ResetRequestValidator : AbstractValidator<ResetRequestDto>
+public class ResetPasswordRequestValidator : AbstractValidator<ResetPasswordRequestDto>
 {
-    public ResetRequestValidator(Localizer L)
+    public ResetPasswordRequestValidator(Localizer L)
     {
 
         RuleFor(x => x.NewPassword)

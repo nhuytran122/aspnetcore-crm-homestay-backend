@@ -35,4 +35,5 @@ public class Customer : BaseEntity
     public CustomerAccount? CustomerAccount { get; set; }
     public List<Coupon>? Coupons { get; set; }
     public List<Booking>? Bookings { get; set; }
+    public CustomerPoint? CustomerPoint { get; set; }
 }

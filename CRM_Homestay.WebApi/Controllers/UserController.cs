@@ -86,7 +86,7 @@ public class UserController : BaseController
     /// <param name="input"></param>
     [HttpPut]
     [Route("set-new-password")]
-    public async Task SetNewPasswordAsync(NewPasswordRequestDto input)
+    public async Task SetNewPasswordAsync(ChangePasswordRequestDto input)
     {
         await _userService.SetNewPasswordAsync(input, GetCurrentUserId());
     }
@@ -199,7 +199,7 @@ public class UserController : BaseController
     [HttpPut]
     [Route("reset-password/{id}")]
     [Authorize(Roles = RoleCodes.ADMIN_AND_TECHNICAL)]
-    public async Task ResetPasswordAsync(ResetRequestDto request, Guid id)
+    public async Task ResetPasswordAsync(ResetPasswordRequestDto request, Guid id)
     {
         await _userService.ResetPasswordAsync(request, id);
     }

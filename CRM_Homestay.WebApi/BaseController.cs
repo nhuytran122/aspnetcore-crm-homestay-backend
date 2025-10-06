@@ -1,4 +1,5 @@
 ﻿using CRM_Homestay.Core.Consts;
+using CRM_Homestay.Entity.Customers;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -53,6 +54,34 @@ public abstract class BaseController
     {
         return _httpContextAccessor.HttpContext?.User
             .FindFirstValue(ClaimTypes.Role)!;
+    }
+
+    /// <summary>
+    /// GetCurrentCustomerAccountId
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public Guid GetCurrentCustomerAccountId()
+    {
+        if (_httpContextAccessor.HttpContext?.Items[CustomerAccountConst.HTTP_CONTEXT_ITEM_CUSTOMER_ACCOUNT_KEY] is CustomerAccount customerAccount)
+        {
+            return customerAccount.Id;
+        }
+        return Guid.Empty;
+    }
+
+    /// <summary>
+    /// Lấy CustomerAccount từ HttpContext.Items
+    /// </summary>
+    [NonAction]
+    public CustomerAccount GetCurrentCustomerAccount()
+    {
+        if (_httpContextAccessor.HttpContext?.Items[CustomerAccountConst.HTTP_CONTEXT_ITEM_CUSTOMER_ACCOUNT_KEY] is CustomerAccount customerAccount)
+        {
+            return customerAccount;
+        }
+
+        return new CustomerAccount();
     }
 
 }

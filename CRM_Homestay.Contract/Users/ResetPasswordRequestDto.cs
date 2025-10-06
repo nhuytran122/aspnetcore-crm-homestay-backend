@@ -2,11 +2,9 @@
 
 namespace CRM_Homestay.Contract.Users;
 
-public class ChangePasswordRequestDto : IForceOverrideValidationMessage
+public class ResetPasswordRequestDto : IForceOverrideValidationMessage
 {
-    public string? OldPassword { get; set; }
-
     public string? NewPassword { get; set; }
-
     public string? PasswordConfirm { get; set; }
+
 }
